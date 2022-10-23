@@ -9,21 +9,28 @@
 /* Begin PBXBuildFile section */
 		82C1960A2904F2DA00E7C95B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C196092904F2DA00E7C95B /* AppDelegate.swift */; };
 		82C1960C2904F2DA00E7C95B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C1960B2904F2DA00E7C95B /* SceneDelegate.swift */; };
-		82C1960E2904F2DA00E7C95B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C1960D2904F2DA00E7C95B /* ViewController.swift */; };
 		82C196112904F2DA00E7C95B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82C1960F2904F2DA00E7C95B /* Main.storyboard */; };
 		82C196132904F2DA00E7C95B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 82C196122904F2DA00E7C95B /* Assets.xcassets */; };
 		82C196162904F2DA00E7C95B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82C196142904F2DA00E7C95B /* LaunchScreen.storyboard */; };
+		82C1961E2904F33B00E7C95B /* ListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C1961D2904F33B00E7C95B /* ListTableViewController.swift */; };
+		82C196202904F3B700E7C95B /* DetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C1961F2904F3B700E7C95B /* DetailTableViewController.swift */; };
+		82C196222904F46800E7C95B /* ListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C196212904F46800E7C95B /* ListTableViewCell.swift */; };
+		82C196242904F61A00E7C95B /* Restaurants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C196232904F61A00E7C95B /* Restaurants.swift */; };
+		82C196272904F98A00E7C95B /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 82C196262904F98A00E7C95B /* Kingfisher */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		82C196062904F2DA00E7C95B /* FoodBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FoodBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		82C196092904F2DA00E7C95B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		82C1960B2904F2DA00E7C95B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		82C1960D2904F2DA00E7C95B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		82C196102904F2DA00E7C95B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		82C196122904F2DA00E7C95B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		82C196152904F2DA00E7C95B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		82C196172904F2DA00E7C95B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		82C1961D2904F33B00E7C95B /* ListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableViewController.swift; sourceTree = "<group>"; };
+		82C1961F2904F3B700E7C95B /* DetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTableViewController.swift; sourceTree = "<group>"; };
+		82C196212904F46800E7C95B /* ListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableViewCell.swift; sourceTree = "<group>"; };
+		82C196232904F61A00E7C95B /* Restaurants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Restaurants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +38,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				82C196272904F98A00E7C95B /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -58,7 +66,10 @@
 			children = (
 				82C196092904F2DA00E7C95B /* AppDelegate.swift */,
 				82C1960B2904F2DA00E7C95B /* SceneDelegate.swift */,
-				82C1960D2904F2DA00E7C95B /* ViewController.swift */,
+				82C1961D2904F33B00E7C95B /* ListTableViewController.swift */,
+				82C196212904F46800E7C95B /* ListTableViewCell.swift */,
+				82C1961F2904F3B700E7C95B /* DetailTableViewController.swift */,
+				82C196232904F61A00E7C95B /* Restaurants.swift */,
 				82C1960F2904F2DA00E7C95B /* Main.storyboard */,
 				82C196122904F2DA00E7C95B /* Assets.xcassets */,
 				82C196142904F2DA00E7C95B /* LaunchScreen.storyboard */,
@@ -83,6 +94,9 @@
 			dependencies = (
 			);
 			name = FoodBook;
+			packageProductDependencies = (
+				82C196262904F98A00E7C95B /* Kingfisher */,
+			);
 			productName = FoodBook;
 			productReference = 82C196062904F2DA00E7C95B /* FoodBook.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +125,9 @@
 				Base,
 			);
 			mainGroup = 82C195FD2904F2DA00E7C95B;
+			packageReferences = (
+				82C196252904F98A00E7C95B /* XCRemoteSwiftPackageReference "Kingfisher" */,
+			);
 			productRefGroup = 82C196072904F2DA00E7C95B /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -138,9 +155,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				82C1960E2904F2DA00E7C95B /* ViewController.swift in Sources */,
+				82C196202904F3B700E7C95B /* DetailTableViewController.swift in Sources */,
 				82C1960A2904F2DA00E7C95B /* AppDelegate.swift in Sources */,
 				82C1960C2904F2DA00E7C95B /* SceneDelegate.swift in Sources */,
+				82C1961E2904F33B00E7C95B /* ListTableViewController.swift in Sources */,
+				82C196242904F61A00E7C95B /* Restaurants.swift in Sources */,
+				82C196222904F46800E7C95B /* ListTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -358,6 +378,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		82C196252904F98A00E7C95B /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		82C196262904F98A00E7C95B /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 82C196252904F98A00E7C95B /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 82C195FE2904F2DA00E7C95B /* Project object */;
 }
