@@ -7,9 +7,15 @@
 
 import UIKit
 import Kingfisher
+import SQLite3
 
 class ListTableViewController: UITableViewController {
 
+    private var db:OpaquePointer?
+    
+    var restRow = Restaurant(id: "C3_315080500H_000013", name: "望海巴耐餐廳/咖啡", description: "非常有特色的原住民餐點餐廳，位於台十一線8K區段上，是東海岸行經花蓮大橋進入東海岸國家風景區之後，花蓮遊客中心前，第一家餐飲服務業者；業者於建物外部以當地竹子搭蓋起大門及挑高竹亭，呈顯其自然風格建築形式是其特色。望海巴耐野菜餐廳位於台十一線8K區段上，是東海岸行經花蓮大橋進入東海岸國家風景區之後，花蓮遊客中心前，第一家餐飲服務業者；業者於建物外部以當地竹子搭蓋起大門及挑高竹亭，呈顯其自然風格建築形式是其特色。", add: "花蓮縣974壽豐鄉鹽寮村大橋22號", zipcode: 974, region: "花蓮縣", town: "壽豐鄉", tel: "886-9-37533483", openTime: "11:30 - 20:00", website: "", picture1: "https://www.eastcoast-nsa.gov.tw/image/41530/640x480", picDescribe1: "花蓮無敵海景咖啡餐廳-望海巴耐", picture2: "", picDescribe2: "", picture3: "", picDescribe3: "", px: 121.606110, py: 23.918950, classLevel: 9, map: "", parkingInfo: "")
+    
+    var arrTable = [Restaurant]()
     
     var restaurants = [Restaurant]()
     
@@ -24,14 +30,104 @@ class ListTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //取得App的db連線
+        db = (UIApplication.shared.delegate as? AppDelegate)?.getDB()
+        
+        //準備離線資料集
+        DispatchQueue(label: "data").sync {
+            self.getDataFromTable()
+            self.tableView.reloadData()
+            
+        }
 
     }
 
+    
+    //MARK: - 自定函式
+    //查詢資料庫，存放到離線資料集
+    func getDataFromTable()
+    {
+        //先清空離線資料集
+        restaurants.removeAll()
+        
+        //準備查詢用的sql指令
+        let sql = "select name,description,region,town,picture1,picDescribe1 from restaurant"
+        
+        //將SQL指令轉換成C語言的字元陣列
+        let cSql = sql.cString(using: .utf8)!
+        
+        //宣告儲存查詢結果的指標（連線資料集）
+        var statement:OpaquePointer?
+        
+        //準備查詢（第三個參數：若為正數則限定SQL指令的長度，若為負數則不限SQL指令的長度。第四個參數和第六個參數為預留參數，目前沒有作用。第五個參數會儲存SQL指令的執行結果。）
+        if sqlite3_prepare_v3(db!, cSql, -1, 0, &statement, nil) == SQLITE_OK
+        {
+            print("資料庫查詢指令執行成功")
+            
+            //往下讀取一筆『連線資料集』中的資料
+            while sqlite3_step(statement!) == SQLITE_ROW
+            {
+                //讀取當筆資料的每一欄
+
+                if let name = sqlite3_column_text(statement!, 0) {
+                    let strName = String(cString: name)
+                    restRow.name = strName
+                }
+                
+                if let description = sqlite3_column_text(statement!, 1) {
+                    let strDescription = String(cString: description)
+                    restRow.description = strDescription
+                }
+
+                
+                if let region = sqlite3_column_text(statement!, 2) {
+                    let strRegion = String(cString: region)
+                    restRow.region = strRegion
+                }
+
+                
+                if let town = sqlite3_column_text(statement!, 3) {
+                    let strTown = String(cString: town)
+                    restRow.town = strTown
+                }
+
+                
+                if let picture1 = sqlite3_column_text(statement, 4) {
+                    let strPicture1 = String(cString: picture1)
+                    restRow.picture1 = strPicture1
+                }
+
+                
+                if let picDescribe1 = sqlite3_column_text(statement, 5) {
+                    let strPicDescribe1 = String(cString: picDescribe1)
+                    restRow.picDescribe1 = strPicDescribe1
+                }
+                
+                print(restRow)
+                
+                //將整筆資料加入陣列（離線資料集）
+                restaurants.append(restRow)
+            }
+            //關閉連線資料集
+            if statement != nil
+            {
+                sqlite3_finalize(statement!)
+            }
+        }
+        else
+        {
+            print("資料庫查詢指令執行失敗")
+        }
+        
+    }
+    
+    
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return restaurants2.count
+        return restaurants.count
     }
 
     @IBSegueAction func showDetail(_ coder: NSCoder) -> DetailTableViewController? {
@@ -40,7 +136,7 @@ class ListTableViewController: UITableViewController {
         
         if let row = tableView.indexPathForSelectedRow?.row {
             
-            controller?.rest = restaurants2[row]
+            controller?.rest = restaurants[row]
             
         }
         return controller
@@ -49,7 +145,7 @@ class ListTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "\(ListTableViewCell.self)", for: indexPath) as! ListTableViewCell
         
-        let rest = restaurants2[indexPath.row]
+        let rest = restaurants[indexPath.row]
         
         cell.cellImageView.kf.setImage(with: URL(string: rest.picture1))
         cell.cellNameLabel.text = rest.name

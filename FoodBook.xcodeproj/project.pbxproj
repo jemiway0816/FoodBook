@@ -17,6 +17,8 @@
 		82C196222904F46800E7C95B /* ListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C196212904F46800E7C95B /* ListTableViewCell.swift */; };
 		82C196242904F61A00E7C95B /* Restaurants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C196232904F61A00E7C95B /* Restaurants.swift */; };
 		82C196272904F98A00E7C95B /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 82C196262904F98A00E7C95B /* Kingfisher */; };
+		DA4692DB2907A6F70037CCBC /* foods.db in Resources */ = {isa = PBXBuildFile; fileRef = DA4692DA2907A6F70037CCBC /* foods.db */; };
+		DA4692DD2907BBB00037CCBC /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4692DC2907BBB00037CCBC /* MapViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +33,8 @@
 		82C1961F2904F3B700E7C95B /* DetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTableViewController.swift; sourceTree = "<group>"; };
 		82C196212904F46800E7C95B /* ListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableViewCell.swift; sourceTree = "<group>"; };
 		82C196232904F61A00E7C95B /* Restaurants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Restaurants.swift; sourceTree = "<group>"; };
+		DA4692DA2907A6F70037CCBC /* foods.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = foods.db; sourceTree = "<group>"; };
+		DA4692DC2907BBB00037CCBC /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,12 +68,14 @@
 		82C196082904F2DA00E7C95B /* FoodBook */ = {
 			isa = PBXGroup;
 			children = (
+				DA4692DA2907A6F70037CCBC /* foods.db */,
 				82C196092904F2DA00E7C95B /* AppDelegate.swift */,
 				82C1960B2904F2DA00E7C95B /* SceneDelegate.swift */,
 				82C1961D2904F33B00E7C95B /* ListTableViewController.swift */,
 				82C196212904F46800E7C95B /* ListTableViewCell.swift */,
 				82C1961F2904F3B700E7C95B /* DetailTableViewController.swift */,
 				82C196232904F61A00E7C95B /* Restaurants.swift */,
+				DA4692DC2907BBB00037CCBC /* MapViewController.swift */,
 				82C1960F2904F2DA00E7C95B /* Main.storyboard */,
 				82C196122904F2DA00E7C95B /* Assets.xcassets */,
 				82C196142904F2DA00E7C95B /* LaunchScreen.storyboard */,
@@ -145,6 +151,7 @@
 				82C196162904F2DA00E7C95B /* LaunchScreen.storyboard in Resources */,
 				82C196132904F2DA00E7C95B /* Assets.xcassets in Resources */,
 				82C196112904F2DA00E7C95B /* Main.storyboard in Resources */,
+				DA4692DB2907A6F70037CCBC /* foods.db in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -161,6 +168,7 @@
 				82C1961E2904F33B00E7C95B /* ListTableViewController.swift in Sources */,
 				82C196242904F61A00E7C95B /* Restaurants.swift in Sources */,
 				82C196222904F46800E7C95B /* ListTableViewCell.swift in Sources */,
+				DA4692DD2907BBB00037CCBC /* MapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
