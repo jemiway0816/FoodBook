@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Restaurant {
+struct Restaurant :Codable {
     
     var id:String
     var name:String
