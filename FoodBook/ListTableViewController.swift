@@ -9,15 +9,15 @@ import UIKit
 import Kingfisher
 import SQLite3
 
+var restaurants = [Restaurant]()
+
 class ListTableViewController: UITableViewController {
 
     private var db:OpaquePointer?
     
     var restRow = Restaurant(id: "C3_315080500H_000013", name: "望海巴耐餐廳/咖啡", description: "非常有特色的原住民餐點餐廳，位於台十一線8K區段上，是東海岸行經花蓮大橋進入東海岸國家風景區之後，花蓮遊客中心前，第一家餐飲服務業者；業者於建物外部以當地竹子搭蓋起大門及挑高竹亭，呈顯其自然風格建築形式是其特色。望海巴耐野菜餐廳位於台十一線8K區段上，是東海岸行經花蓮大橋進入東海岸國家風景區之後，花蓮遊客中心前，第一家餐飲服務業者；業者於建物外部以當地竹子搭蓋起大門及挑高竹亭，呈顯其自然風格建築形式是其特色。", add: "花蓮縣974壽豐鄉鹽寮村大橋22號", zipcode: 974, region: "花蓮縣", town: "壽豐鄉", tel: "886-9-37533483", openTime: "11:30 - 20:00", website: "", picture1: "https://www.eastcoast-nsa.gov.tw/image/41530/640x480", picDescribe1: "花蓮無敵海景咖啡餐廳-望海巴耐", picture2: "", picDescribe2: "", picture3: "", picDescribe3: "", px: 121.606110, py: 23.918950, classLevel: 9, map: "", parkingInfo: "")
     
-    var arrTable = [Restaurant]()
-    
-    var restaurants = [Restaurant]()
+//    var restaurants = [Restaurant]()
     
     var restaurants2 = [
     
@@ -26,7 +26,6 @@ class ListTableViewController: UITableViewController {
         Restaurant(id: "C3_315080500H_000018", name: "口福海鮮餐廳", description: "位處石梯港邊，臨近昕陽餐廳，同時也是東部賞鯨一號的報名處，餐廳主要提供海鮮熱炒料理，室內空間可容納200人以上，淡季客源除了過路觀光客，主要接待當地及附近居民，旺季則以接待遊覽車團體客人為主，是吃飯加賞鯨的好所在。東海岸的石梯坪有湛藍的海景、豐富多樣的海產，口福海鮮餐廳就設在花蓮南區最大的石梯港旁，出產多種迴游魚類、底棲珊瑚礁魚類、東海岸龍蝦，每天早上自家的漁船出海捕撈最新鮮的海產，招牌餐點有生魚片、多種鮮魚料理、東海岸活龍蝦、新鮮鮑魚及各種山、海產料理，不僅品質極佳價錢更是經濟實惠，保證讓您大飽口福，是您旅行東海岸最佳的用餐休息站。", add: "花蓮縣977豐濱鄉石梯港82號", zipcode: 977, region: "花蓮縣", town: "豐濱鄉", tel: "886-3-8781041", openTime: "11:00 - 14:00 、 17:00 - 19:30", website: "", picture1: "https://www.eastcoast-nsa.gov.tw/image/41544/640x480", picDescribe1: "口福海鮮餐廳", picture2: "", picDescribe2: "", picture3: "", picDescribe3: "", px: 121.510850, py: 23.488160, classLevel: 9, map: "", parkingInfo: "")
     
     ]
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,11 +37,23 @@ class ListTableViewController: UITableViewController {
         DispatchQueue(label: "data").sync {
             self.getDataFromTable()
             self.tableView.reloadData()
-            
         }
 
+//        setRestData()
+        
     }
 
+    func setRestData() {
+              
+        let navController = tabBarController?.navigationController?.viewControllers[1] as? UINavigationController
+        let mapViewController = navController?.viewControllers.first as? MapViewController
+        
+        print("restaurants = \(restaurants.count)")
+        
+        mapViewController?.restData = restaurants
+        
+    }
+    
     
     //MARK: - 自定函式
     //查詢資料庫，存放到離線資料集
@@ -52,7 +63,7 @@ class ListTableViewController: UITableViewController {
         restaurants.removeAll()
         
         //準備查詢用的sql指令
-        let sql = "select name,description,region,town,picture1,picDescribe1 from restaurant"
+        let sql = "select name,description,region,town,picture1,picDescribe1,px,py from restaurant"
         
         //將SQL指令轉換成C語言的字元陣列
         let cSql = sql.cString(using: .utf8)!
@@ -80,7 +91,6 @@ class ListTableViewController: UITableViewController {
                     restRow.description = strDescription
                 }
 
-                
                 if let region = sqlite3_column_text(statement!, 2) {
                     let strRegion = String(cString: region)
                     restRow.region = strRegion
@@ -97,12 +107,18 @@ class ListTableViewController: UITableViewController {
                     let strPicture1 = String(cString: picture1)
                     restRow.picture1 = strPicture1
                 }
-
                 
                 if let picDescribe1 = sqlite3_column_text(statement, 5) {
                     let strPicDescribe1 = String(cString: picDescribe1)
                     restRow.picDescribe1 = strPicDescribe1
                 }
+                
+                let px = Double(sqlite3_column_double(statement!, 6))
+                restRow.px = px
+       
+                let py = Double(sqlite3_column_double(statement!, 7))
+                restRow.py = py
+                
                 
                 print(restRow)
                 

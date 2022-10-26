@@ -8,8 +8,6 @@
 import UIKit
 import Kingfisher
 
-
-
 class DetailTableViewController: UITableViewController {
 
     @IBOutlet weak var datailDescriptionLabel: UILabel!
