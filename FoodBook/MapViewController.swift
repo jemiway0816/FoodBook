@@ -109,7 +109,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             objectAnnotation = MKPointAnnotation()
             objectAnnotation.coordinate = CLLocation(latitude: index.py, longitude: index.px).coordinate
             objectAnnotation.title = index.name
-            objectAnnotation.subtitle = index.region
+            objectAnnotation.subtitle = index.add
             mMapView.addAnnotation(objectAnnotation)
             
         }

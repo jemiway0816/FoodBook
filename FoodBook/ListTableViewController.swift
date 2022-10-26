@@ -63,7 +63,7 @@ class ListTableViewController: UITableViewController {
         restaurants.removeAll()
         
         //準備查詢用的sql指令
-        let sql = "select name,description,region,town,picture1,picDescribe1,px,py from restaurant"
+        let sql = "select name,description,\"add\",region,town,picture1,picDescribe1,px,py from restaurant"
         
         //將SQL指令轉換成C語言的字元陣列
         let cSql = sql.cString(using: .utf8)!
@@ -91,32 +91,37 @@ class ListTableViewController: UITableViewController {
                     restRow.description = strDescription
                 }
 
-                if let region = sqlite3_column_text(statement!, 2) {
+                if let add = sqlite3_column_text(statement!, 2) {
+                    let strAdd = String(cString: add)
+                    restRow.add = strAdd
+                }
+                
+                if let region = sqlite3_column_text(statement!, 3) {
                     let strRegion = String(cString: region)
                     restRow.region = strRegion
                 }
 
                 
-                if let town = sqlite3_column_text(statement!, 3) {
+                if let town = sqlite3_column_text(statement!, 4) {
                     let strTown = String(cString: town)
                     restRow.town = strTown
                 }
 
                 
-                if let picture1 = sqlite3_column_text(statement, 4) {
+                if let picture1 = sqlite3_column_text(statement, 5) {
                     let strPicture1 = String(cString: picture1)
                     restRow.picture1 = strPicture1
                 }
                 
-                if let picDescribe1 = sqlite3_column_text(statement, 5) {
+                if let picDescribe1 = sqlite3_column_text(statement, 6) {
                     let strPicDescribe1 = String(cString: picDescribe1)
                     restRow.picDescribe1 = strPicDescribe1
                 }
                 
-                let px = Double(sqlite3_column_double(statement!, 6))
+                let px = Double(sqlite3_column_double(statement!, 7))
                 restRow.px = px
        
-                let py = Double(sqlite3_column_double(statement!, 7))
+                let py = Double(sqlite3_column_double(statement!, 8))
                 restRow.py = py
                 
                 
