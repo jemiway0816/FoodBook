@@ -14,6 +14,9 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     var mLocationManager :CLLocationManager!
     var mMapView :MKMapView!
     
+    
+    var test = 123
+    
     var restData:[Restaurant]!
     
     var myLocate = [
@@ -25,13 +28,14 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        if let restData {
-            print("count = \(restData.count)")
-        } else {
-            print("no data")
-        }
-       
-        print("restaurant = \(restaurants.count)")
+//        if let restData {
+//            print("count = \(restData.count)")
+//        } else {
+//            print("no data")
+//        }
+//        print("restaurant = \(restaurants.count)")
+        
+        print("map", test)
         
         showMap()
         
@@ -91,9 +95,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         //自身
         let myLocation = currentLocation.coordinate
         let appearRegion:MKCoordinateRegion = MKCoordinateRegion(center: myLocation, span: range)
-        
-        mMapView.setRegion(appearRegion, animated: true)
-        
+
 
 //        objectAnnotation.coordinate = CLLocationCoordinate2D(latitude: 24.930068, longitude: 121.171491)
 //        objectAnnotation.coordinate = CLLocation(latitude: 24.930068, longitude: 121.171491).coordinate
@@ -104,7 +106,9 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         objectAnnotation.subtitle = "現在"
         mMapView.addAnnotation(objectAnnotation)
         
-        for index in restaurants {
+        mMapView.tintColor = .brown
+        
+        for index in restData {
             
             objectAnnotation = MKPointAnnotation()
             objectAnnotation.coordinate = CLLocation(latitude: index.py, longitude: index.px).coordinate
@@ -114,10 +118,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             
         }
 
-        // 建立另一個地點圖示 (經由委任方法設置圖示)
-
-        
-        
+       
+        mMapView.setRegion(appearRegion, animated: true)
         
     }
     

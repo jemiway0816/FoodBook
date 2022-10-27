@@ -9,15 +9,18 @@ import UIKit
 import Kingfisher
 import SQLite3
 
-var restaurants = [Restaurant]()
 
-class ListTableViewController: UITableViewController {
+
+//class ListTableViewController: UITableViewController ,UISearchResultsUpdating {
+    
+    class ListTableViewController: UITableViewController {
+    
 
     private var db:OpaquePointer?
     
     var restRow = Restaurant(id: "C3_315080500H_000013", name: "望海巴耐餐廳/咖啡", description: "非常有特色的原住民餐點餐廳，位於台十一線8K區段上，是東海岸行經花蓮大橋進入東海岸國家風景區之後，花蓮遊客中心前，第一家餐飲服務業者；業者於建物外部以當地竹子搭蓋起大門及挑高竹亭，呈顯其自然風格建築形式是其特色。望海巴耐野菜餐廳位於台十一線8K區段上，是東海岸行經花蓮大橋進入東海岸國家風景區之後，花蓮遊客中心前，第一家餐飲服務業者；業者於建物外部以當地竹子搭蓋起大門及挑高竹亭，呈顯其自然風格建築形式是其特色。", add: "花蓮縣974壽豐鄉鹽寮村大橋22號", zipcode: 974, region: "花蓮縣", town: "壽豐鄉", tel: "886-9-37533483", openTime: "11:30 - 20:00", website: "", picture1: "https://www.eastcoast-nsa.gov.tw/image/41530/640x480", picDescribe1: "花蓮無敵海景咖啡餐廳-望海巴耐", picture2: "", picDescribe2: "", picture3: "", picDescribe3: "", px: 121.606110, py: 23.918950, classLevel: 9, map: "", parkingInfo: "")
     
-//    var restaurants = [Restaurant]()
+    var restaurants = [Restaurant]()
     
     var restaurants2 = [
     
@@ -39,23 +42,32 @@ class ListTableViewController: UITableViewController {
             self.tableView.reloadData()
         }
 
-//        setRestData()
+    
+        
+        setRestData()
         
     }
 
     func setRestData() {
-              
-        let navController = tabBarController?.navigationController?.viewControllers[1] as? UINavigationController
+        print("setRest")
+        let navController = tabBarController?.viewControllers?[1] as? UINavigationController
         let mapViewController = navController?.viewControllers.first as? MapViewController
         
         print("restaurants = \(restaurants.count)")
-        
         mapViewController?.restData = restaurants
-        
     }
     
     
+    
+//    func updateSearchResults(for searchController: UISearchController) {
+//        <#code#>
+//    }
+    
+    
     //MARK: - 自定函式
+    
+    
+    
     //查詢資料庫，存放到離線資料集
     func getDataFromTable()
     {
@@ -108,22 +120,21 @@ class ListTableViewController: UITableViewController {
                 }
 
                 
-                if let picture1 = sqlite3_column_text(statement, 5) {
+                if let picture1 = sqlite3_column_text(statement!, 5) {
                     let strPicture1 = String(cString: picture1)
                     restRow.picture1 = strPicture1
                 }
                 
-                if let picDescribe1 = sqlite3_column_text(statement, 6) {
+                if let picDescribe1 = sqlite3_column_text(statement!, 6) {
                     let strPicDescribe1 = String(cString: picDescribe1)
                     restRow.picDescribe1 = strPicDescribe1
                 }
-                
-                let px = Double(sqlite3_column_double(statement!, 7))
+                     
+                let px = sqlite3_column_double(statement!, 7)
                 restRow.px = px
        
-                let py = Double(sqlite3_column_double(statement!, 8))
+                let py = sqlite3_column_double(statement!, 8)
                 restRow.py = py
-                
                 
                 print(restRow)
                 
