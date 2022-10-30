@@ -17,9 +17,33 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="w7Q-Uo-RP3">
+                            <rect key="frame" x="0.0" y="0.0" width="390" height="72"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <searchBar contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Tpe-8W-969">
+                                    <rect key="frame" x="0.0" y="0.0" width="256" height="44"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                    <connections>
+                                        <outlet property="delegate" destination="K8S-O5-ePv" id="gSi-Jp-oYe"/>
+                                    </connections>
+                                </searchBar>
+                                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="新北市" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MOs-Pe-42N">
+                                    <rect key="frame" x="265" y="8" width="117" height="34"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                    <connections>
+                                        <action selector="regionTextField:" destination="K8S-O5-ePv" eventType="editingDidEndOnExit" id="MJw-UY-56a"/>
+                                    </connections>
+                                </textField>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ListTableViewCell" rowHeight="150" id="ecP-Ld-eTR" customClass="ListTableViewCell" customModule="FoodBook" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="50" width="390" height="150"/>
+                                <rect key="frame" x="0.0" y="122" width="390" height="150"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ecP-Ld-eTR" id="Ofs-Af-LTf">
                                     <rect key="frame" x="0.0" y="0.0" width="390" height="150"/>
@@ -59,6 +83,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="xyG-br-lbN"/>
+                    <connections>
+                        <outlet property="regionTextField" destination="MOs-Pe-42N" id="K68-pu-UPw"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xwU-qj-cYk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
