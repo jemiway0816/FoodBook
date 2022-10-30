@@ -8,17 +8,16 @@
 import UIKit
 import Kingfisher
 import SQLite3
+import MapKit
 
-//class ListTableViewController: UITableViewController ,UISearchResultsUpdating {
-
-class ListTableViewController: UITableViewController {
+class ListTableViewController: UITableViewController, CLLocationManagerDelegate {
     
     private var db:OpaquePointer?
+    var mLocationManager :CLLocationManager!
     
     var restRow = Restaurant(id: "C3_315080500H_000013", name: "望海巴耐餐廳/咖啡", description: "非常有特色的原住民餐點餐廳，位於台十一線8K區段上，是東海岸行經花蓮大橋進入東海岸國家風景區之後，花蓮遊客中心前，第一家餐飲服務業者；業者於建物外部以當地竹子搭蓋起大門及挑高竹亭，呈顯其自然風格建築形式是其特色。望海巴耐野菜餐廳位於台十一線8K區段上，是東海岸行經花蓮大橋進入東海岸國家風景區之後，花蓮遊客中心前，第一家餐飲服務業者；業者於建物外部以當地竹子搭蓋起大門及挑高竹亭，呈顯其自然風格建築形式是其特色。", add: "花蓮縣974壽豐鄉鹽寮村大橋22號", zipcode: 974, region: "花蓮縣", town: "壽豐鄉", tel: "886-9-37533483", openTime: "11:30 - 20:00", website: "", picture1: "https://www.eastcoast-nsa.gov.tw/image/41530/640x480", picDescribe1: "花蓮無敵海景咖啡餐廳-望海巴耐", picture2: "", picDescribe2: "", picture3: "", picDescribe3: "", px: 121.606110, py: 23.918950, classLevel: 9, map: "", parkingInfo: "")
     
     var restaurants = [Restaurant]()
-    
     var searchResult = [
         
         Restaurant(id: "C3_315080500H_000013", name: "望海巴耐餐廳/咖啡", description: "非常有特色的原住民餐點餐廳，位於台十一線8K區段上，是東海岸行經花蓮大橋進入東海岸國家風景區之後，花蓮遊客中心前，第一家餐飲服務業者；業者於建物外部以當地竹子搭蓋起大門及挑高竹亭，呈顯其自然風格建築形式是其特色。望海巴耐野菜餐廳位於台十一線8K區段上，是東海岸行經花蓮大橋進入東海岸國家風景區之後，花蓮遊客中心前，第一家餐飲服務業者；業者於建物外部以當地竹子搭蓋起大門及挑高竹亭，呈顯其自然風格建築形式是其特色。", add: "花蓮縣974壽豐鄉鹽寮村大橋22號", zipcode: 974, region: "花蓮縣", town: "壽豐鄉", tel: "886-9-37533483", openTime: "11:30 - 20:00", website: "", picture1: "https://www.eastcoast-nsa.gov.tw/image/41530/640x480", picDescribe1: "花蓮無敵海景咖啡餐廳-望海巴耐", picture2: "", picDescribe2: "", picture3: "", picDescribe3: "", px: 121.606110, py: 23.918950, classLevel: 9, map: "", parkingInfo: ""),
@@ -28,6 +27,7 @@ class ListTableViewController: UITableViewController {
     ]
     
     @IBOutlet weak var regionTextField: UITextField!
+    @IBOutlet weak var positionLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,12 +57,18 @@ class ListTableViewController: UITableViewController {
     {
         //設定下拉更新元件的文字
         self.tableView.refreshControl?.attributedTitle = NSAttributedString(string: "更新中...")
-        //從資料庫讀取資料（to do）
+
         //更新表格資料
         self.tableView.reloadData()
         
         //資料更新完成後將表格恢復原位置
         self.tableView.refreshControl?.endRefreshing()
+    }
+    
+    
+    @IBAction func regionTextFieldEditBegin(_ sender: Any) {
+        
+        regionTextField.text = ""
     }
     
     @IBAction func regionTextField(_ sender: Any) {
@@ -83,17 +89,59 @@ class ListTableViewController: UITableViewController {
     
     //MARK: - 自定函式
     
+    @IBAction func aroundButtom(_ sender: Any) {
+        getAround()
+    }
     
-    func getAllRest() {
+    func getAround() {
         
-        //先清空離線資料集
-        restaurants.removeAll()
+        mLocationManager = CLLocationManager()
+        mLocationManager?.requestWhenInUseAuthorization()
+        mLocationManager.delegate = self
+        mLocationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation  // kCLLocationAccuracyBest
         
-        //準備查詢用的sql指令
-        let sqlStr = "select name,description,\"add\",region,town,picture1,picDescribe1,px,py from restaurant"
-        
-        restaurants = getDataFromTable(sql: sqlStr)
+        if let hereForNow = mLocationManager?.location?.coordinate {
+            
+            print("now locate = \(hereForNow)")
+            let lati = String(format: "%.5f", hereForNow.latitude)
+            let long = String(format: "%.5f", hereForNow.longitude)
+            positionLabel.text = "現在座標 : \(lati) , \(long)"
+            
+            getAroundRest(position: hereForNow)
+            
+        } else {
+            print("can't get locate")
+        }
+    }
+    
+    func getAroundRest(position:CLLocationCoordinate2D) {
 
+        var range = 0.0
+        repeat {
+            searchResult.removeAll()
+            range += 0.005
+            let pxAdd = String(position.longitude + range)
+            let pxDec = String(position.longitude - range)
+            let pyAdd = String(position.latitude + range)
+            let pyDec = String(position.latitude - range)
+            
+            let sqlStr = "select name,description,\"add\",region,town,picture1,picDescribe1,px,py from restaurant where px BETWEEN \(pxDec) AND \(pxAdd) AND py BETWEEN \(pyDec) AND \(pyAdd)"
+            
+            searchResult = getDataFromTable(sql: sqlStr)
+            print("getAroundRest searchResult.count = \(searchResult.count)")
+            
+        } while searchResult.count < 20
+        
+        setMapRestData(restData: searchResult)
+        
+        self.tableView.reloadData()
+        
+    }
+    
+    //------------------
+    
+    func fetchSearch(name:String) {
+        getSearchRest(searchStr: name)
     }
     
     func getSearchRest(searchStr:String) {
@@ -102,20 +150,26 @@ class ListTableViewController: UITableViewController {
         
         let regionStr = regionTextField.text ?? "新北市"
         
-        //準備查詢用的sql指令
-        let sqlStr = "select name,description,\"add\",region,town,picture1,picDescribe1,px,py from restaurant where region='\(regionStr)'"
+        let sqlStr = "select name,description,\"add\",region,town,picture1,picDescribe1,px,py from restaurant where (region like '%\(regionStr)%' OR town like '%\(regionStr)%') AND name like '%\(searchStr)%'"
         
         searchResult = getDataFromTable(sql: sqlStr)
         setMapRestData(restData: searchResult)
         
         self.tableView.reloadData()
+    }
+    
+    func getAllRest() {
         
+        restaurants.removeAll()
+        let sqlStr = "select name,description,\"add\",region,town,picture1,picDescribe1,px,py from restaurant"
+        
+        restaurants = getDataFromTable(sql: sqlStr)
+
     }
     
     //查詢資料庫
     func getDataFromTable(sql:String) -> [Restaurant]
     {
-        
         var restAll = [Restaurant]()
         
         //將SQL指令轉換成C語言的字元陣列
@@ -177,9 +231,8 @@ class ListTableViewController: UITableViewController {
                 let py = sqlite3_column_double(statement!, 8)
                 restRow.py = py
                 
-                //                print(restRow)
+                // print(restRow)
                 
-                //將整筆資料加入陣列（離線資料集）
                 restAll.append(restRow)
             }
             //關閉連線資料集
@@ -227,12 +280,6 @@ class ListTableViewController: UITableViewController {
         
         return cell
     }
-
-    
-    func fetchSearch(name:String) {
-        getSearchRest(searchStr: name)
-    }
-    
 }
 
 

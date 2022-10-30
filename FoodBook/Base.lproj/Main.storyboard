@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -18,32 +19,63 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="w7Q-Uo-RP3">
-                            <rect key="frame" x="0.0" y="0.0" width="390" height="72"/>
+                            <rect key="frame" x="0.0" y="0.0" width="390" height="104"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <searchBar contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Tpe-8W-969">
-                                    <rect key="frame" x="0.0" y="0.0" width="256" height="44"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="Tpe-8W-969">
+                                    <rect key="frame" x="0.0" y="0.0" width="190" height="56"/>
                                     <textInputTraits key="textInputTraits"/>
                                     <connections>
                                         <outlet property="delegate" destination="K8S-O5-ePv" id="gSi-Jp-oYe"/>
                                     </connections>
                                 </searchBar>
-                                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="新北市" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MOs-Pe-42N">
-                                    <rect key="frame" x="265" y="8" width="117" height="34"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="新北市" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MOs-Pe-42N">
+                                    <rect key="frame" x="204" y="11" width="90" height="34"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="90" id="Ith-pH-xMJ"/>
+                                    </constraints>
                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                     <textInputTraits key="textInputTraits"/>
                                     <connections>
                                         <action selector="regionTextField:" destination="K8S-O5-ePv" eventType="editingDidEndOnExit" id="MJw-UY-56a"/>
+                                        <action selector="regionTextFieldEditBegin:" destination="K8S-O5-ePv" eventType="editingDidBegin" id="gEq-Rt-POB"/>
                                     </connections>
                                 </textField>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="現在座標 : " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xge-Xc-nnu">
+                                    <rect key="frame" x="15" y="66" width="360" height="24"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3tc-5J-cy2">
+                                    <rect key="frame" x="310" y="13.666666666666664" width="65" height="29"/>
+                                    <color key="backgroundColor" name="AccentColor"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                    <state key="normal" title=" 附近餐廳 "/>
+                                    <connections>
+                                        <action selector="aroundButtom:" destination="K8S-O5-ePv" eventType="touchUpInside" id="KVM-iB-i0K"/>
+                                    </connections>
+                                </button>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="xge-Xc-nnu" secondAttribute="trailing" constant="15" id="4Bd-Ud-abl"/>
+                                <constraint firstItem="xge-Xc-nnu" firstAttribute="leading" secondItem="w7Q-Uo-RP3" secondAttribute="leading" constant="15" id="7WH-a5-teA"/>
+                                <constraint firstItem="MOs-Pe-42N" firstAttribute="leading" secondItem="Tpe-8W-969" secondAttribute="trailing" constant="14" id="I9z-tO-caX"/>
+                                <constraint firstItem="3tc-5J-cy2" firstAttribute="centerY" secondItem="MOs-Pe-42N" secondAttribute="centerY" id="OXN-ce-zHI"/>
+                                <constraint firstItem="MOs-Pe-42N" firstAttribute="centerY" secondItem="Tpe-8W-969" secondAttribute="centerY" id="dG2-Wz-1Cw"/>
+                                <constraint firstItem="Tpe-8W-969" firstAttribute="leading" secondItem="w7Q-Uo-RP3" secondAttribute="leading" id="db4-KN-u8r"/>
+                                <constraint firstItem="Tpe-8W-969" firstAttribute="top" secondItem="w7Q-Uo-RP3" secondAttribute="top" id="fF6-d6-Pt3"/>
+                                <constraint firstAttribute="trailing" secondItem="3tc-5J-cy2" secondAttribute="trailing" constant="15" id="g6W-mI-Kli"/>
+                                <constraint firstItem="3tc-5J-cy2" firstAttribute="leading" secondItem="MOs-Pe-42N" secondAttribute="trailing" constant="16" id="hkS-Rg-Y4f"/>
+                                <constraint firstAttribute="bottom" secondItem="xge-Xc-nnu" secondAttribute="bottom" constant="14" id="vdI-ox-NXY"/>
+                                <constraint firstItem="xge-Xc-nnu" firstAttribute="top" secondItem="Tpe-8W-969" secondAttribute="bottom" constant="10" id="vew-YX-yFd"/>
+                            </constraints>
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ListTableViewCell" rowHeight="150" id="ecP-Ld-eTR" customClass="ListTableViewCell" customModule="FoodBook" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="122" width="390" height="150"/>
+                                <rect key="frame" x="0.0" y="154" width="390" height="150"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ecP-Ld-eTR" id="Ofs-Af-LTf">
                                     <rect key="frame" x="0.0" y="0.0" width="390" height="150"/>
@@ -84,6 +116,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="xyG-br-lbN"/>
                     <connections>
+                        <outlet property="positionLabel" destination="xge-Xc-nnu" id="Eql-aW-rc9"/>
                         <outlet property="regionTextField" destination="MOs-Pe-42N" id="K68-pu-UPw"/>
                     </connections>
                 </tableViewController>
@@ -258,6 +291,9 @@
         </scene>
     </scenes>
     <resources>
+        <namedColor name="AccentColor">
+            <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

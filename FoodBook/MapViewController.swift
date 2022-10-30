@@ -56,6 +56,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             
             print("hereForNow => \(hereForNow)")   // hereForNow => CLLocationCoordinate2D
             
+            
             if let myCL = mLocationManager.location {
                 
                 myLocate.insert(myCL, at: 0)
