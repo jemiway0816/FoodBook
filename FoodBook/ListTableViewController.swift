@@ -280,8 +280,10 @@ class ListTableViewController: UITableViewController, CLLocationManagerDelegate 
             cell.cellImageView.kf.setImage(with: url)
         } else {
             
+            let url = Bundle.main.url(forResource: "nopicture", withExtension: "jpg")
+            
             print("url = nil" , rest.picture1)
-//            cell.cellImageView = UIImage(systemName: )
+//            cell.cellImageView.image = UIImage(contentsOfFile: url)
         }
         
         cell.cellNameLabel.text = rest.name

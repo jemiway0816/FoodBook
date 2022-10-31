@@ -21,6 +21,7 @@
 		82E8D9F9290813480059BD4F /* UpdateTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E8D9F8290813480059BD4F /* UpdateTableViewController.swift */; };
 		DA4692DB2907A6F70037CCBC /* foods.db in Resources */ = {isa = PBXBuildFile; fileRef = DA4692DA2907A6F70037CCBC /* foods.db */; };
 		DA4692DD2907BBB00037CCBC /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4692DC2907BBB00037CCBC /* MapViewController.swift */; };
+		DA7999DB290FAF4F00782BF6 /* nopicture.jpg in Resources */ = {isa = PBXBuildFile; fileRef = DA7999DA290FAF4F00782BF6 /* nopicture.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +40,7 @@
 		82E8D9F8290813480059BD4F /* UpdateTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateTableViewController.swift; sourceTree = "<group>"; };
 		DA4692DA2907A6F70037CCBC /* foods.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = foods.db; sourceTree = "<group>"; };
 		DA4692DC2907BBB00037CCBC /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		DA7999DA290FAF4F00782BF6 /* nopicture.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = nopicture.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +75,7 @@
 			isa = PBXGroup;
 			children = (
 				DA4692DA2907A6F70037CCBC /* foods.db */,
+				DA7999DA290FAF4F00782BF6 /* nopicture.jpg */,
 				82C196092904F2DA00E7C95B /* AppDelegate.swift */,
 				82C1960B2904F2DA00E7C95B /* SceneDelegate.swift */,
 				82C1961D2904F33B00E7C95B /* ListTableViewController.swift */,
@@ -156,6 +159,7 @@
 			files = (
 				82C196162904F2DA00E7C95B /* LaunchScreen.storyboard in Resources */,
 				82C196132904F2DA00E7C95B /* Assets.xcassets in Resources */,
+				DA7999DB290FAF4F00782BF6 /* nopicture.jpg in Resources */,
 				82C196112904F2DA00E7C95B /* Main.storyboard in Resources */,
 				DA4692DB2907A6F70037CCBC /* foods.db in Resources */,
 			);
