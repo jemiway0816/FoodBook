@@ -274,10 +274,18 @@ class ListTableViewController: UITableViewController, CLLocationManagerDelegate 
         
         let rest = searchResult[indexPath.row]
         
-        cell.cellImageView.kf.setImage(with: URL(string: rest.picture1))
+        if let url = URL(string: rest.picture1) {
+            
+            print("------>> ",url)
+            cell.cellImageView.kf.setImage(with: url)
+        } else {
+            
+            print("url = nil" , rest.picture1)
+//            cell.cellImageView = UIImage(systemName: )
+        }
+        
         cell.cellNameLabel.text = rest.name
         cell.cellRegionLabel.text = "\(rest.region) \(rest.town)"
-        
         return cell
     }
 }
