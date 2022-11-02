@@ -38,7 +38,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         // 地圖設置
         mMapView = MKMapView()
         mMapView.delegate = self
-        mMapView.frame = CGRect.init(x: 0.0, y: 0.0, width: self.view.frame.width, height: self.view.frame.height)
+        mMapView.frame = CGRect.init(x: 0.0, y: 0.0, width: self.view.frame.width, height: self.view.frame.height-80)
         self.view.addSubview(mMapView)
 
         // 經緯度控制
@@ -55,7 +55,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         if let hereForNow = mLocationManager?.location?.coordinate {
             
             print("hereForNow => \(hereForNow)")   // hereForNow => CLLocationCoordinate2D
-            
             
             if let myCL = mLocationManager.location {
                 
@@ -84,6 +83,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         let myLocation = currentLocation.coordinate
         let appearRegion:MKCoordinateRegion = MKCoordinateRegion(center: myLocation, span: range)
 
+        mMapView.showsUserLocation = true
+        
         // 放上大頭針
         var objectAnnotation = MKPointAnnotation()
         objectAnnotation.coordinate = locations[0].coordinate

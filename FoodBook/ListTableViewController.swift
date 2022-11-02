@@ -15,6 +15,7 @@ class ListTableViewController: UITableViewController, CLLocationManagerDelegate 
     private var db:OpaquePointer?
     var mLocationManager :CLLocationManager!
     
+    var searchStr = ""
     var restRow = Restaurant(id: "C3_315080500H_000013", name: "望海巴耐餐廳/咖啡", description: "非常有特色的原住民餐點餐廳，位於台十一線8K區段上，是東海岸行經花蓮大橋進入東海岸國家風景區之後，花蓮遊客中心前，第一家餐飲服務業者；業者於建物外部以當地竹子搭蓋起大門及挑高竹亭，呈顯其自然風格建築形式是其特色。望海巴耐野菜餐廳位於台十一線8K區段上，是東海岸行經花蓮大橋進入東海岸國家風景區之後，花蓮遊客中心前，第一家餐飲服務業者；業者於建物外部以當地竹子搭蓋起大門及挑高竹亭，呈顯其自然風格建築形式是其特色。", add: "花蓮縣974壽豐鄉鹽寮村大橋22號", zipcode: 974, region: "花蓮縣", town: "壽豐鄉", tel: "886-9-37533483", openTime: "11:30 - 20:00", website: "", picture1: "https://www.eastcoast-nsa.gov.tw/image/41530/640x480", picDescribe1: "花蓮無敵海景咖啡餐廳-望海巴耐", picture2: "", picDescribe2: "", picture3: "", picDescribe3: "", px: 121.606110, py: 23.918950, classLevel: 9, map: "", parkingInfo: "")
     
     var restaurants = [Restaurant]()
@@ -68,13 +69,13 @@ class ListTableViewController: UITableViewController, CLLocationManagerDelegate 
     
     @IBAction func regionTextFieldEditBegin(_ sender: Any) {
         
-        regionTextField.text = ""
+//        regionTextField.text = ""
     }
     
     @IBAction func regionTextField(_ sender: Any) {
         
         print("regionTextField did end")
-        getSearchRest(searchStr: "")
+        getSearchRest(searchStr: searchStr)
     }
     
     func setMapRestData(restData:[Restaurant]) {
@@ -130,7 +131,7 @@ class ListTableViewController: UITableViewController, CLLocationManagerDelegate 
             searchResult = getDataFromTable(sql: sqlStr)
             print("getAroundRest searchResult.count = \(searchResult.count)")
             
-        } while searchResult.count < 20
+        } while searchResult.count < 20 && range < 0.1
         
         setMapRestData(restData: searchResult)
         
@@ -275,15 +276,11 @@ class ListTableViewController: UITableViewController, CLLocationManagerDelegate 
         let rest = searchResult[indexPath.row]
         
         if let url = URL(string: rest.picture1) {
-            
-            print("------>> ",url)
             cell.cellImageView.kf.setImage(with: url)
+            
         } else {
-            
-            let url = Bundle.main.url(forResource: "nopicture", withExtension: "jpg")
-            
-            print("url = nil" , rest.picture1)
-//            cell.cellImageView.image = UIImage(contentsOfFile: url)
+            let url = Bundle.main.url(forResource: "picture1", withExtension: "jpg")
+            cell.cellImageView.kf.setImage(with: url)
         }
         
         cell.cellNameLabel.text = rest.name
@@ -298,7 +295,8 @@ extension ListTableViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         
         print("SearchButtonClicked did end")
-        fetchSearch(name: searchBar.text ?? "")
+        searchStr = searchBar.text ?? ""
+        fetchSearch(name: searchStr)
         view.endEditing(true)
     }
 }
