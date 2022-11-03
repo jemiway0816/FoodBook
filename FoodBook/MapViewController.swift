@@ -87,11 +87,11 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         
         // 放上大頭針
         var objectAnnotation = MKPointAnnotation()
-        objectAnnotation.coordinate = locations[0].coordinate
-        objectAnnotation.title = "目前位置"
-        objectAnnotation.subtitle = "現在"
-        mMapView.tintColor = .brown
-        mMapView.addAnnotation(objectAnnotation)
+//        objectAnnotation.coordinate = locations[0].coordinate
+//        objectAnnotation.title = "目前位置"
+//        objectAnnotation.subtitle = "現在"
+//        mMapView.tintColor = .brown
+//        mMapView.addAnnotation(objectAnnotation)
 
         for index in restData {
             objectAnnotation = MKPointAnnotation()
