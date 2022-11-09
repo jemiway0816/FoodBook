@@ -69,6 +69,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
 
         // 讓定位管理員開始定位
         mLocationManager.startUpdatingLocation()
+
+        setCurrentLocate()
         
     }
     
@@ -92,14 +94,19 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         }
     }
     
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-
-        //取得當下座標
-        currentLocation = locations.first
+    func setCurrentLocate() {
+        
         //製作地圖區域框選在目前位置附近
         let region = MKCoordinateRegion(center: currentLocation.coordinate, latitudinalMeters: 1000, longitudinalMeters: 1000)
         //將地圖調整顯示區域在目前位置附近
         mMapView.setRegion(region, animated: false)
+    }
+    
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+
+        //取得當下座標
+        currentLocation = locations.first
         // 顯示目前位置
         mMapView.showsUserLocation = true
         

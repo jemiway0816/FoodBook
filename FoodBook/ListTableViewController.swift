@@ -87,6 +87,7 @@ class ListTableViewController: UITableViewController, CLLocationManagerDelegate 
         
         print("restaurants count = \(restData.count)")
         mapViewController?.restData = restData
+        mapViewController?.currentLocation = currentLocation
     }
     
     
@@ -102,6 +103,8 @@ class ListTableViewController: UITableViewController, CLLocationManagerDelegate 
         mLocationManager?.requestWhenInUseAuthorization()
         mLocationManager.delegate = self
         mLocationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation  // kCLLocationAccuracyBest
+        
+        currentLocation = mLocationManager.location
         
         if let hereForNow = mLocationManager?.location?.coordinate {
             

@@ -19,8 +19,8 @@
 		82C196272904F98A00E7C95B /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 82C196262904F98A00E7C95B /* Kingfisher */; };
 		82E8D9F729080C780059BD4F /* RestFromJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E8D9F629080C780059BD4F /* RestFromJSON.swift */; };
 		82E8D9F9290813480059BD4F /* UpdateTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E8D9F8290813480059BD4F /* UpdateTableViewController.swift */; };
-		DA4692DB2907A6F70037CCBC /* foods.db in Resources */ = {isa = PBXBuildFile; fileRef = DA4692DA2907A6F70037CCBC /* foods.db */; };
 		DA4692DD2907BBB00037CCBC /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4692DC2907BBB00037CCBC /* MapViewController.swift */; };
+		DA53420D291B8E19000723DB /* foods.db in Resources */ = {isa = PBXBuildFile; fileRef = DA53420C291B8E19000723DB /* foods.db */; };
 		DAD5629329120743008A044D /* picture1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = DAD5629229120743008A044D /* picture1.jpg */; };
 /* End PBXBuildFile section */
 
@@ -38,8 +38,8 @@
 		82C196232904F61A00E7C95B /* Restaurants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Restaurants.swift; sourceTree = "<group>"; };
 		82E8D9F629080C780059BD4F /* RestFromJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestFromJSON.swift; sourceTree = "<group>"; };
 		82E8D9F8290813480059BD4F /* UpdateTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateTableViewController.swift; sourceTree = "<group>"; };
-		DA4692DA2907A6F70037CCBC /* foods.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = foods.db; sourceTree = "<group>"; };
 		DA4692DC2907BBB00037CCBC /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		DA53420C291B8E19000723DB /* foods.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = foods.db; sourceTree = "<group>"; };
 		DAD5629229120743008A044D /* picture1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = picture1.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -74,7 +74,7 @@
 		82C196082904F2DA00E7C95B /* FoodBook */ = {
 			isa = PBXGroup;
 			children = (
-				DA4692DA2907A6F70037CCBC /* foods.db */,
+				DA53420C291B8E19000723DB /* foods.db */,
 				DAD5629229120743008A044D /* picture1.jpg */,
 				82C196092904F2DA00E7C95B /* AppDelegate.swift */,
 				82C1960B2904F2DA00E7C95B /* SceneDelegate.swift */,
@@ -159,8 +159,8 @@
 			files = (
 				82C196162904F2DA00E7C95B /* LaunchScreen.storyboard in Resources */,
 				82C196132904F2DA00E7C95B /* Assets.xcassets in Resources */,
+				DA53420D291B8E19000723DB /* foods.db in Resources */,
 				82C196112904F2DA00E7C95B /* Main.storyboard in Resources */,
-				DA4692DB2907A6F70037CCBC /* foods.db in Resources */,
 				DAD5629329120743008A044D /* picture1.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

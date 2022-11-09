@@ -192,11 +192,11 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4uP-1J-KAn">
-                                                    <rect key="frame" x="9" y="11" width="370" height="315"/>
+                                                    <rect key="frame" x="9" y="11" width="369" height="266"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p9g-XR-s8O">
-                                                    <rect key="frame" x="20" y="343" width="350" height="276"/>
+                                                    <rect key="frame" x="20" y="294" width="350" height="247"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -247,19 +247,37 @@
         <scene sceneID="f4u-et-xoa">
             <objects>
                 <tableViewController id="YiX-xg-Ktc" customClass="UpdateTableViewController" customModule="FoodBook" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" sectionFooterHeight="-1" id="sdL-CG-fDh">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" sectionFooterHeight="-1" id="sdL-CG-fDh">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <sections>
                             <tableViewSection id="YEB-tr-e7t">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="392" id="gCX-r9-eqJ">
-                                        <rect key="frame" x="0.0" y="50" width="390" height="392"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="469" id="gCX-r9-eqJ">
+                                        <rect key="frame" x="0.0" y="50" width="390" height="469"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="gCX-r9-eqJ" id="Uxq-Py-qJs">
-                                            <rect key="frame" x="0.0" y="0.0" width="390" height="392"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="390" height="469"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="更新資料庫" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SxZ-U0-WjT">
+                                                    <rect key="frame" x="62" y="44" width="102" height="24"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HuF-Nd-DOC">
+                                                    <rect key="frame" x="207" y="37" width="148" height="38"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" title="Button"/>
+                                                    <buttonConfiguration key="configuration" style="filled" title="Update"/>
+                                                    <connections>
+                                                        <action selector="updateButton:" destination="YiX-xg-Ktc" eventType="touchUpInside" id="hRm-pl-rol"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
@@ -270,10 +288,11 @@
                             <outlet property="delegate" destination="YiX-xg-Ktc" id="kup-vL-5Rq"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" id="Yll-7T-1gV"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P9k-wc-Pyt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2287.6923076923076" y="-725.11848341232223"/>
+            <point key="canvasLocation" x="2289.2307692307691" y="1434.5971563981043"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="mKa-uf-gHv">
@@ -288,6 +307,7 @@
                     <connections>
                         <segue destination="kXo-BW-xXy" kind="relationship" relationship="viewControllers" id="Gp7-Dg-Ru0"/>
                         <segue destination="EL6-L1-dtC" kind="relationship" relationship="viewControllers" id="uH6-wk-A3Y"/>
+                        <segue destination="m0m-1y-wdm" kind="relationship" relationship="viewControllers" id="pnE-cV-2FD"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iEQ-0c-B9P" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -313,6 +333,25 @@
             </objects>
             <point key="canvasLocation" x="1361.5384615384614" y="704.50236966824639"/>
         </scene>
+        <!--Setting-->
+        <scene sceneID="sa7-Ey-ur2">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="m0m-1y-wdm" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Setting" image="square.and.arrow.down.on.square.fill" catalog="system" id="ITC-ep-GBP"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="MfW-uT-Pe4">
+                        <rect key="frame" x="0.0" y="47" width="390" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="YiX-xg-Ktc" kind="relationship" relationship="rootViewController" id="FVL-gP-82g"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fPA-Mv-3Uw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1361.5384615384614" y="1434.5971563981043"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="vrz-8k-oze"/>
@@ -320,6 +359,7 @@
     <resources>
         <image name="pencil.circle.fill" catalog="system" width="128" height="123"/>
         <image name="rectangle.portrait.and.arrow.right.fill" catalog="system" width="128" height="108"/>
+        <image name="square.and.arrow.down.on.square.fill" catalog="system" width="122" height="128"/>
         <namedColor name="AccentColor">
             <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

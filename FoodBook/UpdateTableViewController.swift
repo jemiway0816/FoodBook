@@ -15,10 +15,14 @@ class UpdateTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        update()
     }
 
     // MARK: - Table view data source
+    
+    @IBAction func updateButton(_ sender: Any) {
+        
+        update()
+    }
     
     func update() {
         
