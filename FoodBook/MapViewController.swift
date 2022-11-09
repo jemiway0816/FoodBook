@@ -11,11 +11,13 @@ import CoreLocation
 
 class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
 
-    
-    var mLocationManager :CLLocationManager!
-    var mMapView :MKMapView!
 
+    var mLocationManager :CLLocationManager!
+    var currentLocation:CLLocation!
+    
+    var mMapView :MKMapView!
     var restData:[Restaurant]!
+    var rest:Restaurant!
     
     var myLocate = [
         CLLocation(latitude: 25.034012, longitude: 121.56446)
@@ -33,6 +35,20 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         showMap()
     }
     
+    @IBAction func longPressGesture(_ sender: UILongPressGestureRecognizer) {
+        
+        let navController = tabBarController?.viewControllers?[0] as? UINavigationController
+        let listViewController = navController?.viewControllers.first as? ListTableViewController
+        
+        let touchPoint = sender.location(in: mMapView)     // touch的位置轉成座標
+        let touch:CLLocationCoordinate2D = mMapView.convert(touchPoint, toCoordinateFrom: mMapView)
+        
+        listViewController?.getAroundRest(position: touch)
+        
+        setAnnotation()
+    }
+    
+    
     func showMap() {
         
         // 地圖設置
@@ -45,54 +61,27 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         mLocationManager = CLLocationManager()
         mLocationManager?.requestWhenInUseAuthorization()
         mLocationManager.delegate = self
+        mLocationManager.allowsBackgroundLocationUpdates = true  //允許背景更新位置(需配合capabilities的Background的Location設定)
+        mLocationManager.pausesLocationUpdatesAutomatically = false  //不要自動暫停位置更新
         
         // 取得自身定位位置的精確度
         mLocationManager.desiredAccuracy = kCLLocationAccuracyBest
+
+        // 讓定位管理員開始定位
+        mLocationManager.startUpdatingLocation()
         
-        let searchLocate = CLLocation(latitude: restData[0].py, longitude: restData[0].px)
-        
-        //授權同意後取得使用者位置後指派給 hereForNow
-        if let hereForNow = mLocationManager?.location?.coordinate {
-            
-            print("hereForNow => \(hereForNow)")   // hereForNow => CLLocationCoordinate2D
-            
-            if let myCL = mLocationManager.location {
-                
-                myLocate.insert(myCL, at: 0)
-                myLocate.insert(searchLocate, at: 0)
-                
-                locationManager(mLocationManager, didUpdateLocations: myLocate)
-                
-            }
-        } else {
-            print("can't get hereForNow")
-        }
     }
     
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-
-        //取得當下座標
-        let currentLocation :CLLocation = locations[0] as CLLocation
-
-        print("now locate = \(currentLocation)")
+    
+    func setAnnotation() {
         
-        //總縮放範圍
-        let range:MKCoordinateSpan = MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
-
-        //顯示地圖
-        let myLocation = currentLocation.coordinate
-        let appearRegion:MKCoordinateRegion = MKCoordinateRegion(center: myLocation, span: range)
-
-        mMapView.showsUserLocation = true
+        // 取得目前所有大頭針
+        let annotation = mMapView.annotations
+        //移除有所的大頭針
+        mMapView.removeAnnotations(annotation)
         
-        // 放上大頭針
+        // 放上新的大頭針
         var objectAnnotation = MKPointAnnotation()
-//        objectAnnotation.coordinate = locations[0].coordinate
-//        objectAnnotation.title = "目前位置"
-//        objectAnnotation.subtitle = "現在"
-//        mMapView.tintColor = .brown
-//        mMapView.addAnnotation(objectAnnotation)
-
         for index in restData {
             objectAnnotation = MKPointAnnotation()
             objectAnnotation.coordinate = CLLocation(latitude: index.py, longitude: index.px).coordinate
@@ -101,12 +90,47 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             mMapView.tintColor = .yellow
             mMapView.addAnnotation(objectAnnotation)
         }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+
+        //取得當下座標
+        currentLocation = locations.first
+        //製作地圖區域框選在目前位置附近
+        let region = MKCoordinateRegion(center: currentLocation.coordinate, latitudinalMeters: 1000, longitudinalMeters: 1000)
+        //將地圖調整顯示區域在目前位置附近
+        mMapView.setRegion(region, animated: false)
+        // 顯示目前位置
+        mMapView.showsUserLocation = true
         
-        mMapView.setRegion(appearRegion, animated: true)
+        setAnnotation()
+    }
+    
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         
+        let touchPointX = view.annotation?.coordinate.longitude ?? 0.0
+        let touchPointY = view.annotation?.coordinate.latitude ?? 0.0
+        
+        for index in restData {
+            if index.px == touchPointX && index.py == touchPointY {
+                rest = index
+                break
+            } else {
+                rest = restData[0]
+            }
+        }
+        performSegue(withIdentifier: "showMapSegue", sender: nil)
     }
     
 
+    @IBSegueAction func showMapDetail(_ coder: NSCoder, sender: Any?) -> DetailTableViewController? {
+        
+        let controller = DetailTableViewController(coder: coder)
+        
+        controller?.rest = rest
+        
+        return controller
+    }
     /*
     // MARK: - Navigation
 

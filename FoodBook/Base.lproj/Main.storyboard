@@ -146,13 +146,23 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="xST-1v-3YS"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <gestureRecognizers/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="uHG-oq-1eF" appends="YES" id="tNy-Qn-LEB"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" id="q1f-RO-K4Q"/>
                     <connections>
                         <outlet property="mainView" destination="TIl-tv-ZMW" id="A9G-cx-oME"/>
+                        <segue destination="cCn-MS-egA" kind="show" identifier="showMapSegue" destinationCreationSelector="showMapDetail:sender:" id="vrz-8k-oze"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4fF-fn-I2A" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="2" id="uHG-oq-1eF">
+                    <connections>
+                        <action selector="longPressGesture:" destination="KxP-Xi-4MD" id="Gfd-i0-WDO"/>
+                    </connections>
+                </pongPressGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2289.2307692307691" y="704.50236966824639"/>
         </scene>
@@ -164,11 +174,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <label key="tableHeaderView" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="03Z-Kj-6HO">
+                            <rect key="frame" x="0.0" y="0.0" width="390" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                         <sections>
-                            <tableViewSection headerTitle="Section-1" id="xDZ-Iu-LkI">
+                            <tableViewSection id="xDZ-Iu-LkI">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="601" id="tCj-KK-SD9">
-                                        <rect key="frame" x="0.0" y="50" width="390" height="601"/>
+                                        <rect key="frame" x="0.0" y="94" width="390" height="601"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="tCj-KK-SD9" id="aTq-Ql-4Bn">
                                             <rect key="frame" x="0.0" y="0.0" width="390" height="601"/>
@@ -179,7 +196,7 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p9g-XR-s8O">
-                                                    <rect key="frame" x="20" y="354" width="350" height="202"/>
+                                                    <rect key="frame" x="20" y="343" width="350" height="276"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -200,6 +217,7 @@
                     <connections>
                         <outlet property="datailDescriptionLabel" destination="p9g-XR-s8O" id="yD7-5b-vbk"/>
                         <outlet property="detailImageView" destination="4uP-1J-KAn" id="vAX-Qm-KG4"/>
+                        <outlet property="detailName" destination="03Z-Kj-6HO" id="u6a-AG-sgk"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="n82-cw-KZN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -296,6 +314,9 @@
             <point key="canvasLocation" x="1361.5384615384614" y="704.50236966824639"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="vrz-8k-oze"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="pencil.circle.fill" catalog="system" width="128" height="123"/>
         <image name="rectangle.portrait.and.arrow.right.fill" catalog="system" width="128" height="108"/>

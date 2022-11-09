@@ -14,14 +14,25 @@ class DetailTableViewController: UITableViewController {
     
     @IBOutlet weak var detailImageView: UIImageView!
     
+    @IBOutlet var detailName: UILabel!
     var rest:Restaurant!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-
-        detailImageView.kf.setImage(with: URL(string: rest.picture1))
+        detailName.text = rest.name
         datailDescriptionLabel.text = rest.description
+        
+//        detailImageView.kf.setImage(with: URL(string: rest.picture1))
+        
+        if let url = URL(string: rest.picture1) {
+            detailImageView.kf.setImage(with: url)
+            
+        } else {
+            let url = Bundle.main.url(forResource: "picture1", withExtension: "jpg")
+            detailImageView.kf.setImage(with: url)
+        }
+        
     }
 
     // MARK: - Table view data source
