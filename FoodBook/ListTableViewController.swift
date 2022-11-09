@@ -68,7 +68,6 @@ class ListTableViewController: UITableViewController, CLLocationManagerDelegate 
         self.tableView.refreshControl?.endRefreshing()
     }
     
-    
     @IBAction func regionTextFieldEditBegin(_ sender: Any) {
         
 //        regionTextField.text = ""
@@ -80,6 +79,13 @@ class ListTableViewController: UITableViewController, CLLocationManagerDelegate 
         getSearchRest(searchStr: searchStr)
     }
     
+    @IBAction func aroundButtom(_ sender: Any) {
+        getAround()
+    }
+    
+    //MARK: - 自定函式
+    
+    // 把搜尋餐廳的結果傳到地圖頁
     func setMapRestData(restData:[Restaurant]) {
         
         let navController = tabBarController?.viewControllers?[1] as? UINavigationController
@@ -87,16 +93,12 @@ class ListTableViewController: UITableViewController, CLLocationManagerDelegate 
         
         print("restaurants count = \(restData.count)")
         mapViewController?.restData = restData
+        
+        // 把目前位置傳到地圖頁
         mapViewController?.currentLocation = currentLocation
     }
-    
-    
-    //MARK: - 自定函式
-    
-    @IBAction func aroundButtom(_ sender: Any) {
-        getAround()
-    }
-    
+
+    // 讀取附近的餐廳
     func getAround() {
         
         mLocationManager = CLLocationManager()
@@ -113,6 +115,7 @@ class ListTableViewController: UITableViewController, CLLocationManagerDelegate 
             let long = String(format: "%.5f", hereForNow.longitude)
             positionLabel.text = "現在座標 : \(lati) , \(long)"
             
+            // 讀取座標點附近的餐廳，最少20家
             getAroundRest(position: hereForNow)
             
         } else {
@@ -120,6 +123,7 @@ class ListTableViewController: UITableViewController, CLLocationManagerDelegate 
         }
     }
     
+    // 讀取座標點附近的餐廳，最少20家
     func getAroundRest(position:CLLocationCoordinate2D) {
 
         var range = 0.0
