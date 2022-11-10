@@ -186,6 +186,12 @@ class ListTableViewController: UITableViewController, CLLocationManagerDelegate 
 
     }
     
+    
+    
+    
+    
+    
+    
     //查詢資料庫
     func getDataFromTable(sql:String) -> [Restaurant]
     {
