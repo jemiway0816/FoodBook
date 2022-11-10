@@ -68,17 +68,20 @@ class ListTableViewController: UITableViewController, CLLocationManagerDelegate 
         self.tableView.refreshControl?.endRefreshing()
     }
     
+    // 開始編輯地區搜尋
     @IBAction func regionTextFieldEditBegin(_ sender: Any) {
         
 //        regionTextField.text = ""
     }
     
+    // 按下地區搜尋return
     @IBAction func regionTextField(_ sender: Any) {
         
         print("regionTextField did end")
         getSearchRest(searchStr: searchStr)
     }
     
+    // 按下附近餐廳按鈕
     @IBAction func aroundButtom(_ sender: Any) {
         getAround()
     }
@@ -150,10 +153,12 @@ class ListTableViewController: UITableViewController, CLLocationManagerDelegate 
     
     //------------------
     
+    // search bar 開始搜尋
     func fetchSearch(name:String) {
         getSearchRest(searchStr: name)
     }
     
+    // 設定搜尋 SQL string
     func getSearchRest(searchStr:String) {
         
         searchResult.removeAll()
@@ -162,12 +167,16 @@ class ListTableViewController: UITableViewController, CLLocationManagerDelegate 
         
         let sqlStr = "select name,description,\"add\",region,town,picture1,picDescribe1,px,py from restaurant where (region like '%\(regionStr)%' OR town like '%\(regionStr)%') AND name like '%\(searchStr)%'"
         
+        // 去資料庫篩選資料
         searchResult = getDataFromTable(sql: sqlStr)
+        
+        // 資料 update 到 map
         setMapRestData(restData: searchResult)
         
         self.tableView.reloadData()
     }
     
+    // 取得所有的餐廳資料
     func getAllRest() {
         
         restaurants.removeAll()

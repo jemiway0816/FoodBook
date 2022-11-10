@@ -14,6 +14,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
 
     var mLocationManager :CLLocationManager!
     var currentLocation:CLLocation!
+    var updateLocate:CLLocation!
     
     var mMapView :MKMapView!
     var restData:[Restaurant]!
@@ -26,15 +27,18 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     @IBOutlet var mainView: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        // 第一次切換到地圖頁，地圖顯示區域設定在目前位置
+        updateLocate = currentLocation
     }
 
     override func viewWillAppear(_ animated: Bool) {
         
-        print("restData.count = \(restData.count)")
+        // 重新顯示地圖
         showMap()
     }
     
+    // 長按螢幕兩秒執行附近餐廳搜尋
     @IBAction func longPressGesture(_ sender: UILongPressGestureRecognizer) {
         
         let navController = tabBarController?.viewControllers?[0] as? UINavigationController
@@ -45,10 +49,14 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         
         listViewController?.getAroundRest(position: touch)
         
+        // 儲存目前餐廳座標，由Detail返回時能正確顯示目前餐廳區域
+        updateLocate = CLLocation(latitude: touch.latitude, longitude: touch.longitude)
+        
+        // 顯示大頭針
         setAnnotation()
     }
     
-    
+    // 重新顯示地圖
     func showMap() {
         
         // 地圖設置
@@ -70,11 +78,12 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         // 讓定位管理員開始定位
         mLocationManager.startUpdatingLocation()
 
-        setCurrentLocate()
+        // 設定地圖顯示區域
+        setCurrentLocate(setPosition: updateLocate)
         
     }
     
-    
+    // 顯示大頭針
     func setAnnotation() {
         
         // 取得目前所有大頭針
@@ -94,15 +103,17 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         }
     }
     
-    func setCurrentLocate() {
+    // 設定地圖顯示區域
+    func setCurrentLocate(setPosition:CLLocation) {
         
-        //製作地圖區域框選在目前位置附近
-        let region = MKCoordinateRegion(center: currentLocation.coordinate, latitudinalMeters: 1000, longitudinalMeters: 1000)
-        //將地圖調整顯示區域在目前位置附近
+        //製作地圖區域框
+        let region = MKCoordinateRegion(center: setPosition.coordinate, latitudinalMeters: 1500, longitudinalMeters: 1500)
+        
+        //將地圖調整顯示區域
         mMapView.setRegion(region, animated: false)
     }
     
-    
+    // 持續更新目前位置
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
 
         //取得當下座標
@@ -113,11 +124,13 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         setAnnotation()
     }
     
+    // 按下大頭針
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         
         let touchPointX = view.annotation?.coordinate.longitude ?? 0.0
         let touchPointY = view.annotation?.coordinate.latitude ?? 0.0
         
+        // 拿到大頭針座標的餐廳資訊
         for index in restData {
             if index.px == touchPointX && index.py == touchPointY {
                 rest = index
@@ -126,14 +139,20 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                 rest = restData[0]
             }
         }
+        
+        // 儲存目前餐廳座標，由Detail返回時能正確顯示目前餐廳區域
+        updateLocate = CLLocation(latitude: touchPointY, longitude: touchPointX)
+        
+        // 跳到 Detail 頁
         performSegue(withIdentifier: "showMapSegue", sender: nil)
     }
     
-
+    // segue 的 action
     @IBSegueAction func showMapDetail(_ coder: NSCoder, sender: Any?) -> DetailTableViewController? {
         
         let controller = DetailTableViewController(coder: coder)
         
+        // 將大頭針餐廳的資訊傳到 Detail 頁
         controller?.rest = rest
         
         return controller
