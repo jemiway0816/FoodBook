@@ -44,7 +44,11 @@ class ListTableViewController: UITableViewController, CLLocationManagerDelegate 
 //        }
 //        setMapRestData(restData: searchResult)
         
+        // 讀取附近的餐廳
         getAround()
+        
+        // 顯示附近餐廳的城鎮
+        regionTextField.text = searchResult[0].town
         
         //初始化下拉更新元件
         let refreshControl = UIRefreshControl()
@@ -77,16 +81,39 @@ class ListTableViewController: UITableViewController, CLLocationManagerDelegate 
     // 按下地區搜尋return
     @IBAction func regionTextField(_ sender: Any) {
         
-        print("regionTextField did end")
+        // 設定搜尋 SQL string
         getSearchRest(searchStr: searchStr)
+        
+        // 按下地區搜尋return就一定跳到搜尋區域
+        let searchRestFirst:CLLocation = CLLocation(latitude: searchResult[0].py, longitude: searchResult[0].px)
+        setMapShowArea(position: searchRestFirst)
     }
+    
+    
     
     // 按下附近餐廳按鈕
     @IBAction func aroundButtom(_ sender: Any) {
+        
+        // 讀取附近的餐廳
         getAround()
+        
+        // 按下附近餐廳按鈕就一定跳到目前位置
+        setMapShowArea(position: currentLocation)
     }
     
     //MARK: - 自定函式
+    
+    func setMapShowArea(position:CLLocation) {
+     
+        // 取得地圖頁的 controller
+        let navController = tabBarController?.viewControllers?[1] as? UINavigationController
+        let mapViewController = navController?.viewControllers.first as? MapViewController
+        
+        // 顯示指定的區域
+        mapViewController?.updateLocate = position
+        mapViewController?.currentLocation = position
+    }
+    
     
     // 把搜尋餐廳的結果傳到地圖頁
     func setMapRestData(restData:[Restaurant]) {
@@ -151,11 +178,13 @@ class ListTableViewController: UITableViewController, CLLocationManagerDelegate 
         
     }
     
-    //------------------
-    
     // search bar 開始搜尋
     func fetchSearch(name:String) {
         getSearchRest(searchStr: name)
+        
+        // 按下 search bar return就一定跳到搜尋區域
+        let searchRestFirst:CLLocation = CLLocation(latitude: searchResult[0].py, longitude: searchResult[0].px)
+        setMapShowArea(position: searchRestFirst)
     }
     
     // 設定搜尋 SQL string
@@ -185,12 +214,6 @@ class ListTableViewController: UITableViewController, CLLocationManagerDelegate 
         restaurants = getDataFromTable(sql: sqlStr)
 
     }
-    
-    
-    
-    
-    
-    
     
     //查詢資料庫
     func getDataFromTable(sql:String) -> [Restaurant]

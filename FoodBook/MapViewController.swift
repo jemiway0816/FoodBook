@@ -44,16 +44,22 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         let navController = tabBarController?.viewControllers?[0] as? UINavigationController
         let listViewController = navController?.viewControllers.first as? ListTableViewController
         
+        
         let touchPoint = sender.location(in: mMapView)     // touch的位置轉成座標
         let touch:CLLocationCoordinate2D = mMapView.convert(touchPoint, toCoordinateFrom: mMapView)
         
         listViewController?.getAroundRest(position: touch)
+        
+        // 顯示餐廳所在的城鎮
+        listViewController?.regionTextField.text = listViewController?.searchResult[0].town
         
         // 儲存目前餐廳座標，由Detail返回時能正確顯示目前餐廳區域
         updateLocate = CLLocation(latitude: touch.latitude, longitude: touch.longitude)
         
         // 顯示大頭針
         setAnnotation()
+        
+        
     }
     
     // 重新顯示地圖
@@ -80,6 +86,9 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
 
         // 設定地圖顯示區域
         setCurrentLocate(setPosition: updateLocate)
+        
+        // 顯示大頭針
+        setAnnotation()
         
     }
     
@@ -118,10 +127,11 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
 
         //取得當下座標
         currentLocation = locations.first
+        
         // 顯示目前位置
         mMapView.showsUserLocation = true
         
-        setAnnotation()
+//        setAnnotation()
     }
     
     // 按下大頭針
