@@ -41,24 +41,25 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     // 長按螢幕兩秒執行附近餐廳搜尋
     @IBAction func longPressGesture(_ sender: UILongPressGestureRecognizer) {
         
+        // 取得餐廳列表頁的 controller
         let navController = tabBarController?.viewControllers?[0] as? UINavigationController
         let listViewController = navController?.viewControllers.first as? ListTableViewController
         
-        
-        let touchPoint = sender.location(in: mMapView)     // touch的位置轉成座標
+        // touch的位置轉成座標
+        let touchPoint = sender.location(in: mMapView)
         let touch:CLLocationCoordinate2D = mMapView.convert(touchPoint, toCoordinateFrom: mMapView)
         
         listViewController?.getAroundRest(position: touch)
         
-        // 顯示餐廳所在的城鎮
+        // 更新餐廳列表頁裡餐廳所在的城鎮
         listViewController?.regionTextField.text = listViewController?.searchResult[0].town
+        listViewController?.searchBarOutlet.text = ""
         
         // 儲存目前餐廳座標，由Detail返回時能正確顯示目前餐廳區域
         updateLocate = CLLocation(latitude: touch.latitude, longitude: touch.longitude)
         
         // 顯示大頭針
         setAnnotation()
-        
         
     }
     

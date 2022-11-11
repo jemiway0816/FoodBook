@@ -124,6 +124,7 @@
                     <connections>
                         <outlet property="positionLabel" destination="xge-Xc-nnu" id="Eql-aW-rc9"/>
                         <outlet property="regionTextField" destination="MOs-Pe-42N" id="K68-pu-UPw"/>
+                        <outlet property="searchBarOutlet" destination="Tpe-8W-969" id="TGK-WN-LcG"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xwU-qj-cYk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -354,7 +355,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="vrz-8k-oze"/>
+        <segue reference="ZDn-TK-yxM"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="pencil.circle.fill" catalog="system" width="128" height="123"/>

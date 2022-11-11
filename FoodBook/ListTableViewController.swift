@@ -32,6 +32,8 @@ class ListTableViewController: UITableViewController, CLLocationManagerDelegate 
     @IBOutlet weak var regionTextField: UITextField!
     @IBOutlet weak var positionLabel: UILabel!
     
+    @IBOutlet var searchBarOutlet: UISearchBar!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -88,8 +90,6 @@ class ListTableViewController: UITableViewController, CLLocationManagerDelegate 
         let searchRestFirst:CLLocation = CLLocation(latitude: searchResult[0].py, longitude: searchResult[0].px)
         setMapShowArea(position: searchRestFirst)
     }
-    
-    
     
     // 按下附近餐廳按鈕
     @IBAction func aroundButtom(_ sender: Any) {
@@ -165,7 +165,7 @@ class ListTableViewController: UITableViewController, CLLocationManagerDelegate 
             let pyAdd = String(position.latitude + range)
             let pyDec = String(position.latitude - range)
             
-            let sqlStr = "select name,description,\"add\",region,town,picture1,picDescribe1,px,py from restaurant where px BETWEEN \(pxDec) AND \(pxAdd) AND py BETWEEN \(pyDec) AND \(pyAdd)"
+            let sqlStr = "select name,description,\"add\",region,town,picture1,picDescribe1,px,py from restaurant where px BETWEEN \(pxDec) AND \(pxAdd) AND py BETWEEN \(pyDec) AND \(pyAdd) AND name like '%\(searchStr)%'"
             
             searchResult = getDataFromTable(sql: sqlStr)
             print("getAroundRest searchResult.count = \(searchResult.count)")
