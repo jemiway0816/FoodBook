@@ -103,6 +103,7 @@ class ListTableViewController: UITableViewController, CLLocationManagerDelegate 
     
     //MARK: - 自定函式
     
+    // 顯示指定座標的附近區域
     func setMapShowArea(position:CLLocation) {
      
         // 取得地圖頁的 controller
@@ -118,10 +119,13 @@ class ListTableViewController: UITableViewController, CLLocationManagerDelegate 
     // 把搜尋餐廳的結果傳到地圖頁
     func setMapRestData(restData:[Restaurant]) {
         
+        // 取得地圖頁的 controller
         let navController = tabBarController?.viewControllers?[1] as? UINavigationController
         let mapViewController = navController?.viewControllers.first as? MapViewController
         
         print("restaurants count = \(restData.count)")
+        
+        // 把搜尋餐廳的結果傳到地圖頁
         mapViewController?.restData = restData
         
         // 把目前位置傳到地圖頁
@@ -172,6 +176,7 @@ class ListTableViewController: UITableViewController, CLLocationManagerDelegate 
             
         } while searchResult.count < 20 && range < 0.1
         
+        // 把搜尋餐廳的結果傳到地圖頁
         setMapRestData(restData: searchResult)
         
         self.tableView.reloadData()
@@ -180,6 +185,8 @@ class ListTableViewController: UITableViewController, CLLocationManagerDelegate 
     
     // search bar 開始搜尋
     func fetchSearch(name:String) {
+        
+        // 取得string關鍵字的搜尋結果
         getSearchRest(searchStr: name)
         
         // 按下 search bar return就一定跳到搜尋區域
