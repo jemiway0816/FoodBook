@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		82A0EE282920FABD00B27167 /* foods.db in Resources */ = {isa = PBXBuildFile; fileRef = 82A0EE272920FABD00B27167 /* foods.db */; };
 		82C1960A2904F2DA00E7C95B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C196092904F2DA00E7C95B /* AppDelegate.swift */; };
 		82C1960C2904F2DA00E7C95B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C1960B2904F2DA00E7C95B /* SceneDelegate.swift */; };
 		82C196112904F2DA00E7C95B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82C1960F2904F2DA00E7C95B /* Main.storyboard */; };
@@ -20,11 +21,11 @@
 		82E8D9F729080C780059BD4F /* RestFromJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E8D9F629080C780059BD4F /* RestFromJSON.swift */; };
 		82E8D9F9290813480059BD4F /* UpdateTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E8D9F8290813480059BD4F /* UpdateTableViewController.swift */; };
 		DA4692DD2907BBB00037CCBC /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4692DC2907BBB00037CCBC /* MapViewController.swift */; };
-		DA53420D291B8E19000723DB /* foods.db in Resources */ = {isa = PBXBuildFile; fileRef = DA53420C291B8E19000723DB /* foods.db */; };
 		DAD5629329120743008A044D /* picture1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = DAD5629229120743008A044D /* picture1.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		82A0EE272920FABD00B27167 /* foods.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = foods.db; sourceTree = "<group>"; };
 		82C196062904F2DA00E7C95B /* FoodBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FoodBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		82C196092904F2DA00E7C95B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		82C1960B2904F2DA00E7C95B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -39,7 +40,6 @@
 		82E8D9F629080C780059BD4F /* RestFromJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestFromJSON.swift; sourceTree = "<group>"; };
 		82E8D9F8290813480059BD4F /* UpdateTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateTableViewController.swift; sourceTree = "<group>"; };
 		DA4692DC2907BBB00037CCBC /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
-		DA53420C291B8E19000723DB /* foods.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = foods.db; sourceTree = "<group>"; };
 		DAD5629229120743008A044D /* picture1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = picture1.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -55,6 +55,46 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		82A0EE1A2920BEB400B27167 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				82C196232904F61A00E7C95B /* Restaurants.swift */,
+				82E8D9F629080C780059BD4F /* RestFromJSON.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		82A0EE1B2920BEC800B27167 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				82C196212904F46800E7C95B /* ListTableViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		82A0EE1C2920BED600B27167 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				82C1961D2904F33B00E7C95B /* ListTableViewController.swift */,
+				82C1961F2904F3B700E7C95B /* DetailTableViewController.swift */,
+				DA4692DC2907BBB00037CCBC /* MapViewController.swift */,
+				82E8D9F8290813480059BD4F /* UpdateTableViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		82A0EE1D2920C03400B27167 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				82C196122904F2DA00E7C95B /* Assets.xcassets */,
+				82C1960F2904F2DA00E7C95B /* Main.storyboard */,
+				82C196142904F2DA00E7C95B /* LaunchScreen.storyboard */,
+				DAD5629229120743008A044D /* picture1.jpg */,
+				82A0EE272920FABD00B27167 /* foods.db */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		82C195FD2904F2DA00E7C95B = {
 			isa = PBXGroup;
 			children = (
@@ -74,21 +114,13 @@
 		82C196082904F2DA00E7C95B /* FoodBook */ = {
 			isa = PBXGroup;
 			children = (
-				DA53420C291B8E19000723DB /* foods.db */,
-				DAD5629229120743008A044D /* picture1.jpg */,
 				82C196092904F2DA00E7C95B /* AppDelegate.swift */,
 				82C1960B2904F2DA00E7C95B /* SceneDelegate.swift */,
-				82C1961D2904F33B00E7C95B /* ListTableViewController.swift */,
-				82C1961F2904F3B700E7C95B /* DetailTableViewController.swift */,
-				82C196212904F46800E7C95B /* ListTableViewCell.swift */,
-				82C196232904F61A00E7C95B /* Restaurants.swift */,
-				DA4692DC2907BBB00037CCBC /* MapViewController.swift */,
-				82C1960F2904F2DA00E7C95B /* Main.storyboard */,
-				82C196122904F2DA00E7C95B /* Assets.xcassets */,
-				82C196142904F2DA00E7C95B /* LaunchScreen.storyboard */,
 				82C196172904F2DA00E7C95B /* Info.plist */,
-				82E8D9F629080C780059BD4F /* RestFromJSON.swift */,
-				82E8D9F8290813480059BD4F /* UpdateTableViewController.swift */,
+				82A0EE1C2920BED600B27167 /* Controller */,
+				82A0EE1A2920BEB400B27167 /* Model */,
+				82A0EE1B2920BEC800B27167 /* View */,
+				82A0EE1D2920C03400B27167 /* Resources */,
 			);
 			path = FoodBook;
 			sourceTree = "<group>";
@@ -159,7 +191,7 @@
 			files = (
 				82C196162904F2DA00E7C95B /* LaunchScreen.storyboard in Resources */,
 				82C196132904F2DA00E7C95B /* Assets.xcassets in Resources */,
-				DA53420D291B8E19000723DB /* foods.db in Resources */,
+				82A0EE282920FABD00B27167 /* foods.db in Resources */,
 				82C196112904F2DA00E7C95B /* Main.storyboard in Resources */,
 				DAD5629329120743008A044D /* picture1.jpg in Resources */,
 			);
