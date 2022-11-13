@@ -37,7 +37,7 @@ class UpdateTableViewController: UITableViewController {
     var classStr = ""
     var map = ""
     var parkinginfo = ""
-    var date = ""
+    var updateDate = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -139,13 +139,13 @@ class UpdateTableViewController: UITableViewController {
         classStr = restNew.infoClass!               // 19
         map = restNew.map ?? ""                     // 20
         parkinginfo = restNew.parkinginfo ?? ""     // 21
-        date = today                                // 22
+        updateDate = today                                // 22
         
         // INSERT INTO Store_Information (Store_Name, Sales, Txn_Date) VALUES ('Los Angeles', 900, 'Jan-10-1999');
         
 //        let restUpdate = Restaurant(id: id, name: name, description: descriptionStr, add: addStr, zipcode: zipcode, region: region, town: town, tel: tel, openTime: opentime, website: website, picture1: picture1, picDescribe1: picDescribe1, picture2: picture2, picDescribe2: picDescribe2, picture3: picture3, picDescribe3: picDescribe3, px: px, py: py, classLevel: classStr, map: map, parkingInfo: parkinginfo,date:date)
         
-        let sqlStr = "insert into restaurant (id, name, description, address, zipcode, region, town, tel, opentime, website, picture1, picdescribe1, picture2, picdescribe2, picture3, picdescribe3, px, py, class, map, parkinginfo, update_date) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+        let sqlStr = "insert into restaurant (id, name, description, address, zipcode, region, town, tel, opentime, website, picture1, picdescribe1, picture2, picdescribe2, picture3, picdescribe3, px, py, class, map, parkinginfo, update_date) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);"
             
         updateDB(sqlStr: sqlStr)
         
@@ -267,7 +267,7 @@ class UpdateTableViewController: UITableViewController {
             sqlite3_bind_double(statement, 17, px)
             
             //準備要綁定到第 18
-            sqlite3_bind_double(statement, 18, px)
+            sqlite3_bind_double(statement, 18, py)
             
             //準備要綁定到第 19
             let classStrSql = classStr.cString(using: .utf8)!
@@ -285,7 +285,7 @@ class UpdateTableViewController: UITableViewController {
             sqlite3_bind_text(statement, 21, parkinginfoSql, -1, nil)
             
             //準備要綁定到第 22
-            let dateSql = date.cString(using: .utf8)!
+            let dateSql = updateDate.cString(using: .utf8)!
             //將資料綁定到update指令<參數一>的第八個問號<參數二>，指定介面上的資料<參數三>，且不指定資料長度<參數四為負數>，參數五為預留參數。
             sqlite3_bind_text(statement, 22, dateSql, -1, nil)
             
