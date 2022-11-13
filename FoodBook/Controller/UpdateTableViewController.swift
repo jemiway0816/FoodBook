@@ -102,21 +102,12 @@ class UpdateTableViewController: UITableViewController {
         
         let day = Date()
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy/M/d"
+        dateFormatter.dateFormat = "yyyy-M-d"
         let today:String = dateFormatter.string(from: day)
         print("today = \(today)")
         
-        // 刪除原來db的餐廳
-        
-        // 增加新的餐廳到db
-        
-//        for restNew in restNews {
-//        }
-        
         // 先試試看新增一筆
-        
-        
-        var restNew = restNews[0]
+        var restNew = restNews[10]
         
         id = restNew.id                              // 1
         name = restNew.name                          // 2
@@ -141,19 +132,10 @@ class UpdateTableViewController: UITableViewController {
         parking_info = restNew.parkinginfo ?? ""     // 21
         update_date = today                          // 22
         
-        
-        // INSERT INTO Store_Information (Store_Name, Sales, Txn_Date) VALUES ('Los Angeles', 900, 'Jan-10-1999');
-        
-//        let restUpdate = Restaurant(id: id, name: name, description: descriptionStr, add: addStr, zipcode: zipcode, region: region, town: town, tel: tel, openTime: opentime, website: website, picture1: picture1, picDescribe1: picDescribe1, picture2: picture2, picDescribe2: picDescribe2, picture3: picture3, picDescribe3: picDescribe3, px: px, py: py, classLevel: classStr, map: map, parkingInfo: parkinginfo,date:date)
-        
-        let sqlStr = "INSERT INTO restaurant (id, name, description, address, zipcode, region, town, tel, opentime, website, picture1, picdescribe1, picture2, picdescribe2, picture3, picdescribe3, px, py, class_str, map_str, parking_info, update_date) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+        let sqlStr = "INSERT INTO restaurant (id, name, description, address, zipcode, region, town, tel, opentime, website, picture1, picdescribe1, picture2, picdescribe2, picture3, picdescribe3, px, py, class_str, map_str, parking_info, update_date) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);"
             
         updateDB(sqlStr: sqlStr)
-        
-        // update 日期
-        // update restaurant set date='2022-09-06'
-        
-        
+
     }
     
     
@@ -170,6 +152,7 @@ class UpdateTableViewController: UITableViewController {
         
         //將SQL指令轉換成C語言的字元陣列
         let cSql = sql.cString(using: .utf8)!
+        
         //宣告儲存異動結果的指標
         var statement:OpaquePointer?
         
