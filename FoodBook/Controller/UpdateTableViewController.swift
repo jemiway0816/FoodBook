@@ -18,8 +18,8 @@ class UpdateTableViewController: UITableViewController {
     
     var id = ""
     var name = ""
-    var descriptionStr = ""
-    var addStr = ""
+    var description_str = ""
+    var add_str = ""
     var zipcode = ""
     var region = ""
     var town = ""
@@ -27,17 +27,17 @@ class UpdateTableViewController: UITableViewController {
     var opentime = ""
     var website = ""
     var picture1 = ""
-    var picDescribe1 = ""
+    var pic_describe1 = ""
     var picture2 = ""
-    var picDescribe2 = ""
+    var pic_describe2 = ""
     var picture3 = ""
-    var picDescribe3 = ""
+    var pic_describe3 = ""
     var px = 0.0
     var py = 0.0
-    var classStr = ""
+    var class_str = ""
     var map = ""
-    var parkinginfo = ""
-    var updateDate = ""
+    var parking_info = ""
+    var update_date = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -118,34 +118,35 @@ class UpdateTableViewController: UITableViewController {
         
         var restNew = restNews[0]
         
-        id = restNew.id                             // 1
-        name = restNew.name                         // 2
-        descriptionStr = restNew.infoDescription    // 3
-        addStr = restNew.add                        // 4
-        zipcode = restNew.zipcode!                  // 5
-        region = restNew.region!.rawValue           // 6
-        town = restNew.town!                        // 7
-        tel = restNew.tel                           // 8
-        opentime = restNew.opentime                 // 9
-        website = restNew.website ?? ""             // 10
-        picture1 = restNew.picture1                 // 11
-        picDescribe1 = restNew.picdescribe1         // 12
-        picture2 = restNew.picture2 ?? ""           // 13
-        picDescribe2 = restNew.picdescribe2 ?? ""   // 14
-        picture3 = restNew.picture3 ?? ""           // 15
-        picDescribe3 = restNew.picdescribe3 ?? ""   // 16
-        px = restNew.px                             // 17
-        py = restNew.py                             // 18
-        classStr = restNew.infoClass!               // 19
-        map = restNew.map ?? ""                     // 20
-        parkinginfo = restNew.parkinginfo ?? ""     // 21
-        updateDate = today                                // 22
+        id = restNew.id                              // 1
+        name = restNew.name                          // 2
+        description_str = restNew.infoDescription    // 3
+        add_str = restNew.add                        // 4
+        zipcode = restNew.zipcode!                   // 5
+        region = restNew.region!.rawValue            // 6
+        town = restNew.town!                         // 7
+        tel = restNew.tel                            // 8
+        opentime = restNew.opentime                  // 9
+        website = restNew.website ?? ""              // 10
+        picture1 = restNew.picture1                  // 11
+        pic_describe1 = restNew.picdescribe1         // 12
+        picture2 = restNew.picture2 ?? ""            // 13
+        pic_describe2 = restNew.picdescribe2 ?? ""   // 14
+        picture3 = restNew.picture3 ?? ""            // 15
+        pic_describe3 = restNew.picdescribe3 ?? ""   // 16
+        px = restNew.px                              // 17
+        py = restNew.py                              // 18
+        class_str = restNew.infoClass!               // 19
+        map = restNew.map ?? ""                      // 20
+        parking_info = restNew.parkinginfo ?? ""     // 21
+        update_date = today                          // 22
+        
         
         // INSERT INTO Store_Information (Store_Name, Sales, Txn_Date) VALUES ('Los Angeles', 900, 'Jan-10-1999');
         
 //        let restUpdate = Restaurant(id: id, name: name, description: descriptionStr, add: addStr, zipcode: zipcode, region: region, town: town, tel: tel, openTime: opentime, website: website, picture1: picture1, picDescribe1: picDescribe1, picture2: picture2, picDescribe2: picDescribe2, picture3: picture3, picDescribe3: picDescribe3, px: px, py: py, classLevel: classStr, map: map, parkingInfo: parkinginfo,date:date)
         
-        let sqlStr = "insert into restaurant (id, name, description, address, zipcode, region, town, tel, opentime, website, picture1, picdescribe1, picture2, picdescribe2, picture3, picdescribe3, px, py, class, map, parkinginfo, update_date) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);"
+        let sqlStr = "INSERT INTO restaurant (id, name, description, address, zipcode, region, town, tel, opentime, website, picture1, picdescribe1, picture2, picdescribe2, picture3, picdescribe3, px, py, class_str, map_str, parking_info, update_date) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
             
         updateDB(sqlStr: sqlStr)
         
@@ -165,6 +166,8 @@ class UpdateTableViewController: UITableViewController {
         
         let sql = sqlStr
         
+        print(sql)
+        
         //將SQL指令轉換成C語言的字元陣列
         let cSql = sql.cString(using: .utf8)!
         //宣告儲存異動結果的指標
@@ -180,87 +183,68 @@ class UpdateTableViewController: UITableViewController {
             
             //準備要綁定到第 2
             let nameSql = name.cString(using: .utf8)!
-            //將資料綁定到update指令<參數一>的第二個問號<參數二>，指定介面上的資料<參數三>，且不指定資料長度<參數四為負數>，參數五為預留參數。
             sqlite3_bind_text(statement, 2, nameSql, -1, nil)
      
-//            //準備要綁定到第三個問號的資料
 //            let gender = description.selectedRow(inComponent: 0)
-//            //將資料綁定到update指令<參數一>的第三個問號<參數二>，指定介面上的資料<參數三>。
 //            sqlite3_bind_int(statement, 3, Int32(gender))
             
             //準備要綁定到第 3
-            let descriptionSql = descriptionStr.cString(using: .utf8)!
-            //將資料綁定到update指令<參數一>的第三個問號<參數二>，指定介面上的資料<參數三>。
+            let descriptionSql = description_str.cString(using: .utf8)!
             sqlite3_bind_text(statement, 3, descriptionSql, -1, nil)
             
-//            //準備要綁定到第四個問號的資料
 //            let imgData = imgPicture.image!.jpegData(compressionQuality: 0.7)!
-//            //將資料綁定到update指令<參數一>的第四個問號<參數二>，指定介面上圖檔的位元資料<參數三>，以及檔案長度<參數四>，參數五為預留參數。
 //            sqlite3_bind_blob(statement, 4, (imgData as NSData).bytes, Int32(imgData.count), nil)
 //
             //準備要綁定到第 4
-            let addStrSql = addStr.cString(using: .utf8)!
-            //將資料綁定到update指令<參數一>的第四個問號<參數二>，指定介面上圖檔的位元資料<參數三>，以及檔案長度<參數四>，參數五為預留參數。
+            let addStrSql = add_str.cString(using: .utf8)!
             sqlite3_bind_text(statement, 4, addStrSql, -1, nil)
             
             //準備要綁定到第 5
             let zipcodeSql = zipcode.cString(using: .utf8)!
-            //將資料綁定到update指令<參數一>的第五個問號<參數二>，指定介面上的資料<參數三>，且不指定資料長度<參數四為負數>，參數五為預留參數。
             sqlite3_bind_text(statement, 5, zipcodeSql, -1, nil)
             
             //準備要綁定到第 6
             let regionSql = region.cString(using: .utf8)!
-            //將資料綁定到update指令<參數一>的第六個問號<參數二>，指定介面上的資料<參數三>，且不指定資料長度<參數四為負數>，參數五為預留參數。
             sqlite3_bind_text(statement, 6, regionSql, -1, nil)
             
             //準備要綁定到第 7
             let townStr = town.cString(using: .utf8)!
-            //將資料綁定到update指令<參數一>的第七個問號<參數二>，指定介面上的資料<參數三>，且不指定資料長度<參數四為負數>，參數五為預留參數。
             sqlite3_bind_text(statement, 7, townStr, -1, nil)
             
             //準備要綁定到第 8
             let telSql = tel.cString(using: .utf8)!
-            //將資料綁定到update指令<參數一>的第八個問號<參數二>，指定介面上的資料<參數三>，且不指定資料長度<參數四為負數>，參數五為預留參數。
             sqlite3_bind_text(statement, 8, telSql, -1, nil)
             
             //準備要綁定到第 9
             let opentimeSql = opentime.cString(using: .utf8)!
-            //將資料綁定到update指令<參數一>的第八個問號<參數二>，指定介面上的資料<參數三>，且不指定資料長度<參數四為負數>，參數五為預留參數。
             sqlite3_bind_text(statement, 9, opentimeSql, -1, nil)
             
             //準備要綁定到第 10
             let websiteSql = website.cString(using: .utf8)!
-            //將資料綁定到update指令<參數一>的第八個問號<參數二>，指定介面上的資料<參數三>，且不指定資料長度<參數四為負數>，參數五為預留參數。
             sqlite3_bind_text(statement, 10, websiteSql, -1, nil)
         
             //準備要綁定到第 11
             let picture1Sql = picture1.cString(using: .utf8)!
-            //將資料綁定到update指令<參數一>的第八個問號<參數二>，指定介面上的資料<參數三>，且不指定資料長度<參數四為負數>，參數五為預留參數。
             sqlite3_bind_text(statement, 11, picture1Sql, -1, nil)
             
             //準備要綁定到第 12
-            let picDescribe1Sql = picDescribe1.cString(using: .utf8)!
-            //將資料綁定到update指令<參數一>的第八個問號<參數二>，指定介面上的資料<參數三>，且不指定資料長度<參數四為負數>，參數五為預留參數。
+            let picDescribe1Sql = pic_describe1.cString(using: .utf8)!
             sqlite3_bind_text(statement, 12, picDescribe1Sql, -1, nil)
         
             //準備要綁定到第 13
             let picture2Sql = picture2.cString(using: .utf8)!
-            //將資料綁定到update指令<參數一>的第八個問號<參數二>，指定介面上的資料<參數三>，且不指定資料長度<參數四為負數>，參數五為預留參數。
             sqlite3_bind_text(statement, 13, picture2Sql, -1, nil)
             
             //準備要綁定到第 14
-            let picDescribe2Sql = picDescribe2.cString(using: .utf8)!
-            //將資料綁定到update指令<參數一>的第八個問號<參數二>，指定介面上的資料<參數三>，且不指定資料長度<參數四為負數>，參數五為預留參數。
+            let picDescribe2Sql = pic_describe2.cString(using: .utf8)!
             sqlite3_bind_text(statement, 14, picDescribe2Sql, -1, nil)
             
             //準備要綁定到第 15
             let picture3Sql = picture3.cString(using: .utf8)!
-            //將資料綁定到update指令<參數一>的第八個問號<參數二>，指定介面上的資料<參數三>，且不指定資料長度<參數四為負數>，參數五為預留參數。
             sqlite3_bind_text(statement, 15, picture3Sql, -1, nil)
             
             //準備要綁定到第 16
-            let picDescribe3Sql = picDescribe3.cString(using: .utf8)!
-            //將資料綁定到update指令<參數一>的第八個問號<參數二>，指定介面上的資料<參數三>，且不指定資料長度<參數四為負數>，參數五為預留參數。
+            let picDescribe3Sql = pic_describe3.cString(using: .utf8)!
             sqlite3_bind_text(statement, 16, picDescribe3Sql, -1, nil)
             
             //準備要綁定到第 17
@@ -270,23 +254,19 @@ class UpdateTableViewController: UITableViewController {
             sqlite3_bind_double(statement, 18, py)
             
             //準備要綁定到第 19
-            let classStrSql = classStr.cString(using: .utf8)!
-            //將資料綁定到update指令<參數一>的第八個問號<參數二>，指定介面上的資料<參數三>，且不指定資料長度<參數四為負數>，參數五為預留參數。
+            let classStrSql = class_str.cString(using: .utf8)!
             sqlite3_bind_text(statement, 19, classStrSql, -1, nil)
             
             //準備要綁定到第 20
             let mapSql = map.cString(using: .utf8)!
-            //將資料綁定到update指令<參數一>的第八個問號<參數二>，指定介面上的資料<參數三>，且不指定資料長度<參數四為負數>，參數五為預留參數。
             sqlite3_bind_text(statement, 20, mapSql, -1, nil)
             
             //準備要綁定到第 21
-            let parkinginfoSql = parkinginfo.cString(using: .utf8)!
-            //將資料綁定到update指令<參數一>的第八個問號<參數二>，指定介面上的資料<參數三>，且不指定資料長度<參數四為負數>，參數五為預留參數。
+            let parkinginfoSql = parking_info.cString(using: .utf8)!
             sqlite3_bind_text(statement, 21, parkinginfoSql, -1, nil)
             
             //準備要綁定到第 22
-            let dateSql = updateDate.cString(using: .utf8)!
-            //將資料綁定到update指令<參數一>的第八個問號<參數二>，指定介面上的資料<參數三>，且不指定資料長度<參數四為負數>，參數五為預留參數。
+            let dateSql = update_date.cString(using: .utf8)!
             sqlite3_bind_text(statement, 22, dateSql, -1, nil)
             
             //執行資料庫異動，如果執行不成功

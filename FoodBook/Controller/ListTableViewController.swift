@@ -226,13 +226,19 @@ class ListTableViewController: UITableViewController, CLLocationManagerDelegate 
         
         var restTests = [Restaurant]()
         let sqlStr = "select name,description,address,region,town,picture1,picDescribe1,px,py,update_date from restaurant"
+        
+//        let sqlStr = "select * from restaurant"
+        
+        
         restTests = getDataFromTable(sql: sqlStr)
         
-        for restTest in restTests {
-            
-            print("name = \(restTest.name) ， date = \(restTest.date)")
-            
-        }
+        print(restTests[10])
+        
+//        for restTest in restTests {
+//
+//            print("name = \(restTest.name) ， date = \(restTest.date)")
+//
+//        }
     }
     
     
@@ -256,7 +262,7 @@ class ListTableViewController: UITableViewController, CLLocationManagerDelegate 
             while sqlite3_step(statement!) == SQLITE_ROW
             {
                 //讀取當筆資料的每一欄
-                
+            
                 if let name = sqlite3_column_text(statement!, 0) {
                     let strName = String(cString: name)
                     restRow.name = strName
