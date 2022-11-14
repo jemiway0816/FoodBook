@@ -11,10 +11,14 @@ import Kingfisher
 class DetailTableViewController: UITableViewController {
 
     @IBOutlet weak var datailDescriptionLabel: UILabel!
-    
     @IBOutlet weak var detailImageView: UIImageView!
-    
     @IBOutlet var detailName: UILabel!
+    
+    @IBOutlet var detailAddressLabel: UILabel!
+    @IBOutlet var detailTelLabel: UILabel!
+    @IBOutlet var detailOpenTimeLabel: UILabel!
+    @IBOutlet var detailWebSite: UIButton!
+    
     var rest:Restaurant!
     
     override func viewDidLoad() {
@@ -22,6 +26,17 @@ class DetailTableViewController: UITableViewController {
 
         detailName.text = rest.name
         datailDescriptionLabel.text = rest.description
+        detailAddressLabel.text = "住址 : " + rest.add
+        detailTelLabel.text = "電話 : " + rest.tel
+        detailOpenTimeLabel.text = rest.openTime
+        
+        print("rest.website = \(rest.website)")
+        
+        if rest.website == "" {
+            detailWebSite.isEnabled = false
+        } else {
+            detailWebSite.isEnabled = true
+        }
         
 //        detailImageView.kf.setImage(with: URL(string: rest.picture1))
         
@@ -32,8 +47,17 @@ class DetailTableViewController: UITableViewController {
             let url = Bundle.main.url(forResource: "picture1", withExtension: "jpg")
             detailImageView.kf.setImage(with: url)
         }
-        
+
     }
+
+
+    
+    @IBSegueAction func showEwbSite(_ coder: NSCoder, sender: Any?) -> WebSiteViewController? {
+        let controller = WebSiteViewController(coder: coder)
+        controller?.urlStr = rest.website
+        return controller
+    }
+    
 
     // MARK: - Table view data source
 

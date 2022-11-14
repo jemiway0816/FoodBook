@@ -20,6 +20,8 @@ class ListTableViewController: UITableViewController, CLLocationManagerDelegate 
     var searchStr = ""
     var restRow = Restaurant(id: "C3_315080500H_000013", name: "望海巴耐餐廳/咖啡", description: "非常有特色的原住民餐點餐廳，位於台十一線8K區段上，是東海岸行經花蓮大橋進入東海岸國家風景區之後，花蓮遊客中心前，第一家餐飲服務業者；業者於建物外部以當地竹子搭蓋起大門及挑高竹亭，呈顯其自然風格建築形式是其特色。望海巴耐野菜餐廳位於台十一線8K區段上，是東海岸行經花蓮大橋進入東海岸國家風景區之後，花蓮遊客中心前，第一家餐飲服務業者；業者於建物外部以當地竹子搭蓋起大門及挑高竹亭，呈顯其自然風格建築形式是其特色。", add: "花蓮縣974壽豐鄉鹽寮村大橋22號", zipcode: "974", region: "花蓮縣", town: "壽豐鄉", tel: "886-9-37533483", openTime: "11:30 - 20:00", website: "", picture1: "https://www.eastcoast-nsa.gov.tw/image/41530/640x480", picDescribe1: "花蓮無敵海景咖啡餐廳-望海巴耐", picture2: "", picDescribe2: "", picture3: "", picDescribe3: "", px: 121.606110, py: 23.918950, classLevel: "9", map: "", parkingInfo: "",date: "2022-09-06")
     
+    var sqlHeaderStr = "select name,description,address,region,town,picture1,picdescribe1,px,py,update_date,tel,opentime,website from restaurant"
+    
     var restaurants = [Restaurant]()
     var searchResult = [
         
@@ -169,7 +171,9 @@ class ListTableViewController: UITableViewController, CLLocationManagerDelegate 
             let pyAdd = String(position.latitude + range)
             let pyDec = String(position.latitude - range)
             
-            let sqlStr = "select name,description,address,region,town,picture1,picDescribe1,px,py,update_date from restaurant where px BETWEEN \(pxDec) AND \(pxAdd) AND py BETWEEN \(pyDec) AND \(pyAdd) AND name like '%\(searchStr)%'"
+//            let sqlStr = "select name,description,address,region,town,picture1,picDescribe1,px,py,update_date from restaurant where px BETWEEN \(pxDec) AND \(pxAdd) AND py BETWEEN \(pyDec) AND \(pyAdd) AND name like '%\(searchStr)%'"
+            
+            let sqlStr = sqlHeaderStr + " where px BETWEEN \(pxDec) AND \(pxAdd) AND py BETWEEN \(pyDec) AND \(pyAdd) AND name like '%\(searchStr)%'"
             
             searchResult = getDataFromTable(sql: sqlStr)
             print("getAroundRest searchResult.count = \(searchResult.count)")
@@ -201,7 +205,7 @@ class ListTableViewController: UITableViewController, CLLocationManagerDelegate 
         
         let regionStr = regionTextField.text ?? "新北市"
         
-        let sqlStr = "select name,description,address,region,town,picture1,picDescribe1,px,py,update_date from restaurant where (region like '%\(regionStr)%' OR town like '%\(regionStr)%') AND name like '%\(searchStr)%'"
+        let sqlStr = sqlHeaderStr + " where (region like '%\(regionStr)%' OR town like '%\(regionStr)%') AND name like '%\(searchStr)%'"
         
         // 去資料庫篩選資料
         searchResult = getDataFromTable(sql: sqlStr)
@@ -216,30 +220,41 @@ class ListTableViewController: UITableViewController, CLLocationManagerDelegate 
     func getAllRest() {
         
         restaurants.removeAll()
-        let sqlStr = "select name,description,address,region,town,picture1,picDescribe1,px,py,update_date from restaurant"
+        let sqlStr = sqlHeaderStr
         
         restaurants = getDataFromTable(sql: sqlStr)
     }
     
     
+    func getLastUpdateDate() -> String {
+        
+        var restTests = [Restaurant]()
+        let sqlStr = sqlHeaderStr + " limit 5 "
+
+        restTests = getDataFromTable(sql: sqlStr)
+        
+        var returnValue = ""
+        if restTests.count != 0 {
+            returnValue = restTests[0].date
+        }
+        return returnValue
+    }
+    
     func getSQLTest() {
         
         var restTests = [Restaurant]()
-        let sqlStr = "select name,description,address,region,town,picture1,picDescribe1,px,py,update_date from restaurant"
-        
-//        let sqlStr = "select * from restaurant"
-        
-        
+        let sqlStr = sqlHeaderStr + " where update_date == '2022-11-14' "
+
         restTests = getDataFromTable(sql: sqlStr)
-        
-        print(restTests[10])
-        
-//        for restTest in restTests {
-//
-//            print("name = \(restTest.name) ， date = \(restTest.date)")
-//
-//        }
+
+        var index = 1
+        for restTest in restTests {
+
+            print("\(index) name = \(restTest.name) ， date = \(restTest.date)")
+            index += 1
+        }
     }
+    
     
     
     //查詢資料庫
@@ -264,6 +279,7 @@ class ListTableViewController: UITableViewController, CLLocationManagerDelegate 
                 //讀取當筆資料的每一欄
             
                 if let name = sqlite3_column_text(statement!, 0) {
+
                     let strName = String(cString: name)
                     restRow.name = strName
                 }
@@ -311,7 +327,20 @@ class ListTableViewController: UITableViewController, CLLocationManagerDelegate 
                     restRow.date = strUpdate
                 }
                 
-                // print(restRow)
+                if let tel = sqlite3_column_text(statement!, 10) {
+                    let strTel = String(cString: tel)
+                    restRow.tel = strTel
+                }
+                
+                if let opentime = sqlite3_column_text(statement!, 11) {
+                    let strOpentime = String(cString: opentime)
+                    restRow.openTime = strOpentime
+                }
+                
+                if let website = sqlite3_column_text(statement!, 12) {
+                    let strWebsite = String(cString: website)
+                    restRow.website = strWebsite
+                }
                 
                 restAll.append(restRow)
             }
