@@ -393,6 +393,15 @@ class ListTableViewController: UITableViewController, CLLocationManagerDelegate 
         
         cell.cellNameLabel.text = rest.name
         cell.cellRegionLabel.text = "\(rest.region) \(rest.town)"
+        
+        
+        if rest.website == "" {
+            cell.cellWebsiteImageView.isHidden = true
+        } else {
+            cell.cellWebsiteImageView.layer.cornerRadius = 10
+            cell.cellWebsiteImageView.isHidden = false
+        }
+        
         return cell
     }
 }

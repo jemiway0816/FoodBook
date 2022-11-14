@@ -11,9 +11,9 @@ class ListTableViewCell: UITableViewCell {
 
     @IBOutlet weak var cellNameLabel: UILabel!
     @IBOutlet weak var cellImageView: UIImageView!
-    
     @IBOutlet weak var cellRegionLabel: UILabel!
     
+    @IBOutlet weak var cellWebsiteImageView: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
