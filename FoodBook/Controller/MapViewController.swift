@@ -127,6 +127,14 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         mMapView.setRegion(region, animated: false)
     }
     
+    func getNowPosition() -> (String,String) {
+        
+        let lati = String(format: "%.5f", currentLocation.coordinate.latitude)
+        let long = String(format: "%.5f", currentLocation.coordinate.longitude)
+        
+        return (lati,long)
+    }
+    
     // 持續更新目前位置
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
 

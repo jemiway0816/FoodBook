@@ -39,8 +39,11 @@ class UpdateTableViewController: UITableViewController {
     var parking_info = ""
     var update_date = ""
     
-    
     @IBOutlet var updateMsgLabel: UILabel!
+    @IBOutlet weak var lateLabel: UILabel!
+    @IBOutlet weak var longLabel: UILabel!
+    @IBOutlet weak var backView01: UIView!
+    @IBOutlet weak var backView00: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,6 +57,21 @@ class UpdateTableViewController: UITableViewController {
         
         updateMsgLabel.text = listViewController?.getLastUpdateDate()
 
+        // 取得地圖頁的 controller
+        let navController2 = tabBarController?.viewControllers?[1] as? UINavigationController
+        let mapViewController = navController2?.viewControllers.first as? MapViewController
+        
+        var late:String
+        var long:String
+        
+        (late,long) = mapViewController?.getNowPosition() ?? ("","")
+        
+        lateLabel.text = "經度 " + late
+        longLabel.text = "緯度 " + long
+        
+        backView00.layer.cornerRadius = 8
+        backView01.layer.cornerRadius = 8
+        
     }
 
     // MARK: - Table view data source
@@ -61,9 +79,7 @@ class UpdateTableViewController: UITableViewController {
     @IBAction func updateButton(_ sender: Any) {
         
         update()
-   
-//        showTest()
-        
+      
     }
     
     @IBAction func showTestButton(_ sender: Any) {

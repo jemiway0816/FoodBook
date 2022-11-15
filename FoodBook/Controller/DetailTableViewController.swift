@@ -7,6 +7,7 @@
 
 import UIKit
 import Kingfisher
+import SafariServices
 
 class DetailTableViewController: UITableViewController {
 
@@ -18,6 +19,7 @@ class DetailTableViewController: UITableViewController {
     @IBOutlet var detailTelLabel: UILabel!
     @IBOutlet var detailOpenTimeLabel: UILabel!
     @IBOutlet var detailWebSite: UIButton!
+    
     
     var rest:Restaurant!
     
@@ -51,6 +53,14 @@ class DetailTableViewController: UITableViewController {
     }
 
 
+    @IBAction func showWebsiteBySF(_ sender: Any) {
+        
+        if let url = URL(string: rest.website) {
+            
+            let controller = SFSafariViewController(url: url)
+            present(controller, animated: true)
+        }
+    }
     
     @IBSegueAction func showEwbSite(_ coder: NSCoder, sender: Any?) -> WebSiteViewController? {
         let controller = WebSiteViewController(coder: coder)

@@ -13,8 +13,7 @@ class ListTableViewCell: UITableViewCell {
     @IBOutlet weak var cellImageView: UIImageView!
     @IBOutlet weak var cellRegionLabel: UILabel!
     
-    @IBOutlet weak var cellWebsiteImageView: UIImageView!
-    
+    @IBOutlet weak var cellWebsiteLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
