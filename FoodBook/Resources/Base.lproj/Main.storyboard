@@ -233,9 +233,6 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <state key="normal" title="Button"/>
                                                     <buttonConfiguration key="configuration" style="filled" title="網站連結"/>
-                                                    <connections>
-                                                        <segue destination="P3i-zL-jjM" kind="show" destinationCreationSelector="showEwbSite:sender:" id="2zn-wi-UGo"/>
-                                                    </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="開放時間 : " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lm6-c3-Xmn">
                                                     <rect key="frame" x="26" y="308" width="83" height="21"/>
@@ -248,7 +245,7 @@
                                                     <rect key="frame" x="267" y="318" width="98" height="29"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <state key="normal" title="Button"/>
-                                                    <buttonConfiguration key="configuration" style="filled" title="網站連結"/>
+                                                    <buttonConfiguration key="configuration" style="filled" title="加入最愛"/>
                                                     <connections>
                                                         <action selector="showWebsiteBySF:" destination="cCn-MS-egA" eventType="touchUpInside" id="W3y-2c-nLp"/>
                                                     </connections>
@@ -278,36 +275,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="n82-cw-KZN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3258.4615384615386" y="7.8199052132701414"/>
-        </scene>
-        <!--Web Site View Controller-->
-        <scene sceneID="ons-I5-bH9">
-            <objects>
-                <viewController id="P3i-zL-jjM" customClass="WebSiteViewController" customModule="FoodBook" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Vak-Or-8rS">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <wkWebView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JaU-XK-uIO">
-                                <rect key="frame" x="0.0" y="91" width="390" height="753"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <wkWebViewConfiguration key="configuration">
-                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
-                                    <wkPreferences key="preferences"/>
-                                </wkWebViewConfiguration>
-                            </wkWebView>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="58b-MM-eeK"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="iij-Tf-1QT"/>
-                    <connections>
-                        <outlet property="webView" destination="JaU-XK-uIO" id="arf-Qd-PIh"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="f65-80-WsR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4136.9230769230771" y="7.8199052132701414"/>
         </scene>
         <!--列表-->
         <scene sceneID="UmK-wr-EdG">

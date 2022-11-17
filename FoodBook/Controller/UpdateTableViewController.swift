@@ -64,6 +64,7 @@ class UpdateTableViewController: UITableViewController {
         var late:String
         var long:String
         
+        // 取得目前位置
         (late,long) = mapViewController?.getNowPosition() ?? ("","")
         
         lateLabel.text = "經度 " + late
@@ -78,6 +79,7 @@ class UpdateTableViewController: UITableViewController {
     
     @IBAction func updateButton(_ sender: Any) {
         
+        // 開始更新資料
         update()
       
     }
@@ -86,23 +88,28 @@ class UpdateTableViewController: UITableViewController {
         
         showTest()
     }
-    // 從網路取得最新餐廳資料到 restNews 陣列
+    
+    // 從網路取得最新餐廳資料到restNews陣列
     func update() {
         
+        // 餐廳資料的json網路位置
         let url = URL(string: "https://gis.taiwan.net.tw/XMLReleaseALL_public/restaurant_C_f.json")!
         
         URLSession.shared.dataTask(with: url) { data, response, error in
             if let data {
                 do {
+                    // 產生decoder並用REST解碼
                     let decoder = JSONDecoder()
                     let restOrg = try decoder.decode(REST.self, from: data)
                     
+                    // 解碼出的餐廳資料放進restNews
                     self.restNews = restOrg.xmlHead.infos.info
                     
                     DispatchQueue.main.async {
+                        
+                        // 更新餐廳資料到資料庫
                         self.preperUpdateDB()
                     }
-//                    print(self.restNews[0])
                     
                 } catch  {
                     print(error)
@@ -139,7 +146,6 @@ class UpdateTableViewController: UITableViewController {
         //第三步
         sqlite3_finalize(deleteStatement)
     }
-    
     
     func preperUpdateDB() {
         
@@ -344,7 +350,5 @@ class UpdateTableViewController: UITableViewController {
         }
         
     }
-    
-
 
 }
