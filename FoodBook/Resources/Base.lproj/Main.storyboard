@@ -232,7 +232,10 @@
                                                     <rect key="frame" x="267" y="352" width="98" height="29"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <state key="normal" title="Button"/>
-                                                    <buttonConfiguration key="configuration" style="filled" title="網站連結"/>
+                                                    <buttonConfiguration key="configuration" style="filled" title="加入最愛"/>
+                                                    <connections>
+                                                        <action selector="favRestAddButton:" destination="cCn-MS-egA" eventType="touchUpInside" id="8xx-52-S1x"/>
+                                                    </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="開放時間 : " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lm6-c3-Xmn">
                                                     <rect key="frame" x="26" y="308" width="83" height="21"/>
@@ -245,7 +248,7 @@
                                                     <rect key="frame" x="267" y="318" width="98" height="29"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <state key="normal" title="Button"/>
-                                                    <buttonConfiguration key="configuration" style="filled" title="加入最愛"/>
+                                                    <buttonConfiguration key="configuration" style="filled" title="網站連結"/>
                                                     <connections>
                                                         <action selector="showWebsiteBySF:" destination="cCn-MS-egA" eventType="touchUpInside" id="W3y-2c-nLp"/>
                                                     </connections>
@@ -269,12 +272,13 @@
                         <outlet property="detailName" destination="03Z-Kj-6HO" id="u6a-AG-sgk"/>
                         <outlet property="detailOpenTimeLabel" destination="Fdo-NL-Gj0" id="hLn-d0-ztP"/>
                         <outlet property="detailTelLabel" destination="saZ-Cg-Il1" id="fCe-oB-5fI"/>
-                        <outlet property="detailWebSite" destination="O3x-go-9lb" id="DNR-vN-hCL"/>
+                        <outlet property="detailWebSite" destination="faA-jh-ABG" id="0Zp-KA-fIr"/>
+                        <outlet property="favButton" destination="O3x-go-9lb" id="dh4-uN-g3z"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="n82-cw-KZN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3258.4615384615386" y="7.8199052132701414"/>
+            <point key="canvasLocation" x="3446" y="705"/>
         </scene>
         <!--列表-->
         <scene sceneID="UmK-wr-EdG">
@@ -402,7 +406,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P9k-wc-Pyt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2289.2307692307691" y="1434.5971563981043"/>
+            <point key="canvasLocation" x="2289" y="2082"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="mKa-uf-gHv">
@@ -417,12 +421,13 @@
                     <connections>
                         <segue destination="kXo-BW-xXy" kind="relationship" relationship="viewControllers" id="Gp7-Dg-Ru0"/>
                         <segue destination="EL6-L1-dtC" kind="relationship" relationship="viewControllers" id="uH6-wk-A3Y"/>
+                        <segue destination="wtb-Bv-hQd" kind="relationship" relationship="viewControllers" id="CCC-OZ-7IZ"/>
                         <segue destination="m0m-1y-wdm" kind="relationship" relationship="viewControllers" id="pnE-cV-2FD"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iEQ-0c-B9P" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="433.84615384615381" y="1.4218009478672986"/>
+            <point key="canvasLocation" x="-28" y="827"/>
         </scene>
         <!--地圖-->
         <scene sceneID="G0R-aG-jWA">
@@ -443,11 +448,80 @@
             </objects>
             <point key="canvasLocation" x="1361.5384615384614" y="704.50236966824639"/>
         </scene>
-        <!--Setting-->
+        <!--我的最愛-->
+        <scene sceneID="gBc-j7-kvm">
+            <objects>
+                <tableViewController id="5EM-3n-NiI" customClass="FavTableViewController" customModule="FoodBook" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="150" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="wsx-e4-QXN">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FavTableViewCell" rowHeight="150" id="jXy-gn-rHT" userLabel="FavTableViewCell" customClass="FavTableViewCell" customModule="FoodBook" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="50" width="390" height="150"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jXy-gn-rHT" id="erR-gW-usa">
+                                    <rect key="frame" x="0.0" y="0.0" width="390" height="150"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ydj-hp-Q5I">
+                                            <rect key="frame" x="13" y="11" width="196" height="136"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aPt-sV-KeQ">
+                                            <rect key="frame" x="217" y="11" width="164" height="67"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eHM-k9-Dlq">
+                                            <rect key="frame" x="217" y="81" width="164" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sov-c4-Nzi">
+                                            <rect key="frame" x="281" y="114" width="100" height="28"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <attributedString key="attributedText">
+                                                <fragment content="網站連結">
+                                                    <attributes>
+                                                        <font key="NSFont" metaFont="system" size="17"/>
+                                                        <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                    </attributes>
+                                                </fragment>
+                                            </attributedString>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="cellFavImageView" destination="ydj-hp-Q5I" id="fVP-Bb-fIw"/>
+                                    <outlet property="cellFavNameLabel" destination="aPt-sV-KeQ" id="6Wb-e7-SiO"/>
+                                    <outlet property="cellFavRegionLabel" destination="eHM-k9-Dlq" id="0Bk-Pj-T3C"/>
+                                    <outlet property="cellFavWebsiteLabel" destination="sov-c4-Nzi" id="UCk-2h-lg6"/>
+                                    <segue destination="cCn-MS-egA" kind="show" identifier="showDetail" destinationCreationSelector="showDetailSegue:" id="zES-jt-vkR"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="5EM-3n-NiI" id="LQR-Tu-tow"/>
+                            <outlet property="delegate" destination="5EM-3n-NiI" id="I5N-eP-97D"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="我的最愛" id="Vnt-iv-L6k"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xhy-QM-ACh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2292" y="1376"/>
+        </scene>
+        <!--設定-->
         <scene sceneID="sa7-Ey-ur2">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="m0m-1y-wdm" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Setting" image="square.and.arrow.down.on.square.fill" catalog="system" id="ITC-ep-GBP"/>
+                    <tabBarItem key="tabBarItem" title="設定" image="square.and.arrow.down.on.square.fill" catalog="system" id="ITC-ep-GBP"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="MfW-uT-Pe4">
                         <rect key="frame" x="0.0" y="47" width="390" height="44"/>
@@ -460,16 +534,36 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fPA-Mv-3Uw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1361.5384615384614" y="1434.5971563981043"/>
+            <point key="canvasLocation" x="1363" y="2082"/>
+        </scene>
+        <!--最愛-->
+        <scene sceneID="wq0-2S-pAO">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="wtb-Bv-hQd" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="最愛" image="square.and.pencil.circle.fill" catalog="system" id="XaA-Qn-NWX"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="jxM-TQ-pg0">
+                        <rect key="frame" x="0.0" y="47" width="390" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="5EM-3n-NiI" kind="relationship" relationship="rootViewController" id="AfD-xY-cqH"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iQF-Wg-Qe3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1412" y="1376"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="ZDn-TK-yxM"/>
+        <segue reference="zES-jt-vkR"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="pencil.circle.fill" catalog="system" width="128" height="123"/>
         <image name="rectangle.portrait.and.arrow.right.fill" catalog="system" width="128" height="108"/>
         <image name="square.and.arrow.down.on.square.fill" catalog="system" width="122" height="128"/>
+        <image name="square.and.pencil.circle.fill" catalog="system" width="128" height="123"/>
         <namedColor name="AccentColor">
             <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

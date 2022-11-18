@@ -11,7 +11,6 @@ import CoreLocation
 
 class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
 
-
     var mLocationManager :CLLocationManager!
     var currentLocation:CLLocation!
     var updateLocate:CLLocation!
@@ -174,6 +173,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         
         let controller = DetailTableViewController(coder: coder)
         
+        controller?.favButtonEnable = true
         // 將大頭針餐廳的資訊傳到 Detail 頁
         controller?.rest = rest
         

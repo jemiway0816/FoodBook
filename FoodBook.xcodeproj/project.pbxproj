@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8230CF282927BD6B00128E6F /* FavTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8230CF272927BD6B00128E6F /* FavTableViewController.swift */; };
+		8230CF2A2927BEC900128E6F /* FavTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8230CF292927BEC900128E6F /* FavTableViewCell.swift */; };
 		82C1960A2904F2DA00E7C95B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C196092904F2DA00E7C95B /* AppDelegate.swift */; };
 		82C1960C2904F2DA00E7C95B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C1960B2904F2DA00E7C95B /* SceneDelegate.swift */; };
 		82C196112904F2DA00E7C95B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82C1960F2904F2DA00E7C95B /* Main.storyboard */; };
@@ -26,6 +28,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8230CF272927BD6B00128E6F /* FavTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavTableViewController.swift; sourceTree = "<group>"; };
+		8230CF292927BEC900128E6F /* FavTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavTableViewCell.swift; sourceTree = "<group>"; };
 		82C196062904F2DA00E7C95B /* FoodBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FoodBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		82C196092904F2DA00E7C95B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		82C1960B2904F2DA00E7C95B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -70,6 +74,7 @@
 			isa = PBXGroup;
 			children = (
 				82C196212904F46800E7C95B /* ListTableViewCell.swift */,
+				8230CF292927BEC900128E6F /* FavTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -80,6 +85,7 @@
 				82C1961D2904F33B00E7C95B /* ListTableViewController.swift */,
 				82C1961F2904F3B700E7C95B /* DetailTableViewController.swift */,
 				DA4692DC2907BBB00037CCBC /* MapViewController.swift */,
+				8230CF272927BD6B00128E6F /* FavTableViewController.swift */,
 				82E8D9F8290813480059BD4F /* UpdateTableViewController.swift */,
 			);
 			path = Controller;
@@ -208,6 +214,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8230CF2A2927BEC900128E6F /* FavTableViewCell.swift in Sources */,
 				82C196202904F3B700E7C95B /* DetailTableViewController.swift in Sources */,
 				82E8D9F729080C780059BD4F /* RestFromJSON.swift in Sources */,
 				82C1960A2904F2DA00E7C95B /* AppDelegate.swift in Sources */,
@@ -215,6 +222,7 @@
 				82C1961E2904F33B00E7C95B /* ListTableViewController.swift in Sources */,
 				82E8D9F9290813480059BD4F /* UpdateTableViewController.swift in Sources */,
 				82C196242904F61A00E7C95B /* Restaurants.swift in Sources */,
+				8230CF282927BD6B00128E6F /* FavTableViewController.swift in Sources */,
 				82C196222904F46800E7C95B /* ListTableViewCell.swift in Sources */,
 				DA4692DD2907BBB00037CCBC /* MapViewController.swift in Sources */,
 			);

@@ -20,7 +20,10 @@ class DetailTableViewController: UITableViewController {
     @IBOutlet var detailOpenTimeLabel: UILabel!
     @IBOutlet var detailWebSite: UIButton!
     
+    @IBOutlet weak var favButton: UIButton!
     
+    
+    var favButtonEnable:Bool!
     var rest:Restaurant!
     
     override func viewDidLoad() {
@@ -49,6 +52,12 @@ class DetailTableViewController: UITableViewController {
             let url = Bundle.main.url(forResource: "picture1", withExtension: "jpg")
             detailImageView.kf.setImage(with: url)
         }
+        
+        if favButtonEnable == true {
+            favButton.isHidden = false
+        } else {
+            favButton.isHidden = true
+        }
 
     }
 
@@ -60,4 +69,30 @@ class DetailTableViewController: UITableViewController {
             present(controller, animated: true)
         }
     }
+    
+    @IBAction func favRestAddButton(_ sender: Any) {
+  
+        // 取得餐廳列表頁的 controller
+        let navController = tabBarController?.viewControllers?[0] as? UINavigationController
+        let listViewController = navController?.viewControllers.first as? ListTableViewController
+        
+        listViewController?.favRests.insert(rest, at: 0)
+        
+        print("favRest ===> \(listViewController!.favRests)")
+        
+        Restaurant.saveToFile(favRest: listViewController!.favRests)
+        
+        //產生提示視窗
+        let alert = UIAlertController(title: "我的最愛加入成功", message: "已將\(rest.name)餐廳加入我的最愛", preferredStyle: .alert)
+        //產生提示視窗內用的按鈕
+        let okAction = UIAlertAction(title: "確定", style: .destructive)
+        //將按鈕加入提示視窗
+        alert.addAction(okAction)
+        //顯示提示視窗
+        self.present(alert, animated: true)
+        
+    }
+    
+    
+    
 }

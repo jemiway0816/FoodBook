@@ -31,4 +31,30 @@ struct Restaurant :Codable {
     var map:String
     var parkingInfo:String
     var date:String
+    
+    static let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+    
+    static func readFavFromFile() -> [Self]? {
+        
+        let propertyDecoder = PropertyListDecoder()
+        let url = Self.documentsDirectory.appendingPathComponent("favRests")
+        
+        if let data = try? Data(contentsOf: url),
+           let favRests = try? propertyDecoder.decode([Self].self, from: data) {
+            return favRests
+        } else {
+            return nil
+        }
+    }
+    
+    static func saveToFile(favRest:[Self]) {
+        
+        let propertyEncoder = PropertyListEncoder()
+        if let data = try? propertyEncoder.encode(favRest) {
+            
+            let url = Self.documentsDirectory.appendingPathComponent("favRests")
+            
+            try? data.write(to: url)
+        }
+    }
 }

@@ -1,18 +1,18 @@
 //
-//  ListTableViewCell.swift
+//  FavTableViewCell.swift
 //  FoodBook
 //
-//  Created by CHUN-CHIEH LU on 2022/10/23.
+//  Created by CHUN-CHIEH LU on 2022/11/18.
 //
 
 import UIKit
 
-class ListTableViewCell: UITableViewCell {
+class FavTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var cellNameLabel: UILabel!
-    @IBOutlet weak var cellImageView: UIImageView!
-    @IBOutlet weak var cellRegionLabel: UILabel!
-    @IBOutlet weak var cellWebsiteLabel: UILabel!
+    @IBOutlet weak var cellFavImageView: UIImageView!
+    @IBOutlet weak var cellFavNameLabel: UILabel!
+    @IBOutlet weak var cellFavRegionLabel: UILabel!
+    @IBOutlet weak var cellFavWebsiteLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
