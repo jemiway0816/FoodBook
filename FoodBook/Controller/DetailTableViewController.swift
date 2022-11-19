@@ -11,9 +11,9 @@ import SafariServices
 
 class DetailTableViewController: UITableViewController {
 
-    @IBOutlet weak var datailDescriptionLabel: UILabel!
     @IBOutlet weak var detailImageView: UIImageView!
     @IBOutlet var detailName: UILabel!
+    @IBOutlet weak var detailDescriptionTextField: UITextView!
     
     @IBOutlet var detailAddressLabel: UILabel!
     @IBOutlet var detailTelLabel: UILabel!
@@ -30,7 +30,7 @@ class DetailTableViewController: UITableViewController {
         super.viewDidLoad()
 
         detailName.text = rest.name
-        datailDescriptionLabel.text = rest.description
+        detailDescriptionTextField.text = rest.description
         detailAddressLabel.text = "住址 : " + rest.add
         detailTelLabel.text = "電話 : " + rest.tel
         detailOpenTimeLabel.text = rest.openTime
@@ -52,6 +52,7 @@ class DetailTableViewController: UITableViewController {
             let url = Bundle.main.url(forResource: "picture1", withExtension: "jpg")
             detailImageView.kf.setImage(with: url)
         }
+        detailImageView.layer.cornerRadius = 8
         
         if favButtonEnable == true {
             favButton.isHidden = false

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		822AE8452928C6C500D78793 /* picture1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 822AE8442928C6C500D78793 /* picture1.jpg */; };
 		8230CF282927BD6B00128E6F /* FavTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8230CF272927BD6B00128E6F /* FavTableViewController.swift */; };
 		8230CF2A2927BEC900128E6F /* FavTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8230CF292927BEC900128E6F /* FavTableViewCell.swift */; };
 		82C1960A2904F2DA00E7C95B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C196092904F2DA00E7C95B /* AppDelegate.swift */; };
@@ -22,12 +23,11 @@
 		82E8D9F729080C780059BD4F /* RestFromJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E8D9F629080C780059BD4F /* RestFromJSON.swift */; };
 		82E8D9F9290813480059BD4F /* UpdateTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E8D9F8290813480059BD4F /* UpdateTableViewController.swift */; };
 		DA2755192921D4D500E1CC32 /* foods.db in Resources */ = {isa = PBXBuildFile; fileRef = DA2755182921D4D500E1CC32 /* foods.db */; };
-		DA27551F292223FF00E1CC32 /* picture2.png in Resources */ = {isa = PBXBuildFile; fileRef = DA27551E292223FF00E1CC32 /* picture2.png */; };
 		DA4692DD2907BBB00037CCBC /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4692DC2907BBB00037CCBC /* MapViewController.swift */; };
-		DAD5629329120743008A044D /* picture1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = DAD5629229120743008A044D /* picture1.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		822AE8442928C6C500D78793 /* picture1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = picture1.jpg; sourceTree = "<group>"; };
 		8230CF272927BD6B00128E6F /* FavTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavTableViewController.swift; sourceTree = "<group>"; };
 		8230CF292927BEC900128E6F /* FavTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavTableViewCell.swift; sourceTree = "<group>"; };
 		82C196062904F2DA00E7C95B /* FoodBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FoodBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -44,9 +44,7 @@
 		82E8D9F629080C780059BD4F /* RestFromJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestFromJSON.swift; sourceTree = "<group>"; };
 		82E8D9F8290813480059BD4F /* UpdateTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateTableViewController.swift; sourceTree = "<group>"; };
 		DA2755182921D4D500E1CC32 /* foods.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = foods.db; sourceTree = "<group>"; };
-		DA27551E292223FF00E1CC32 /* picture2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = picture2.png; sourceTree = "<group>"; };
 		DA4692DC2907BBB00037CCBC /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
-		DAD5629229120743008A044D /* picture1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = picture1.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,8 +95,7 @@
 				82C196122904F2DA00E7C95B /* Assets.xcassets */,
 				82C1960F2904F2DA00E7C95B /* Main.storyboard */,
 				82C196142904F2DA00E7C95B /* LaunchScreen.storyboard */,
-				DAD5629229120743008A044D /* picture1.jpg */,
-				DA27551E292223FF00E1CC32 /* picture2.png */,
+				822AE8442928C6C500D78793 /* picture1.jpg */,
 				DA2755182921D4D500E1CC32 /* foods.db */,
 			);
 			path = Resources;
@@ -199,11 +196,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				82C196162904F2DA00E7C95B /* LaunchScreen.storyboard in Resources */,
-				DA27551F292223FF00E1CC32 /* picture2.png in Resources */,
 				82C196132904F2DA00E7C95B /* Assets.xcassets in Resources */,
 				DA2755192921D4D500E1CC32 /* foods.db in Resources */,
 				82C196112904F2DA00E7C95B /* Main.storyboard in Resources */,
-				DAD5629329120743008A044D /* picture1.jpg in Resources */,
+				822AE8452928C6C500D78793 /* picture1.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

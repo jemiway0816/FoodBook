@@ -69,6 +69,7 @@ class FavTableViewController: UITableViewController {
             let url = Bundle.main.url(forResource: "picture1", withExtension: "jpg")
             cell.cellFavImageView.kf.setImage(with: url)
         }
+        cell.cellFavImageView.layer.cornerRadius = 8
         
         cell.cellFavNameLabel.text = favRest.name
         cell.cellFavRegionLabel.text = "\(favRest.region) \(favRest.town)"
