@@ -213,20 +213,20 @@
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4uP-1J-KAn">
                                                     <rect key="frame" x="20" y="11" width="350" height="225"/>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="住址 : " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2dQ-hn-LgE">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="住址 : " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="2dQ-hn-LgE">
                                                     <rect key="frame" x="20" y="237" width="350" height="33"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="電話 : " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="saZ-Cg-Il1">
                                                     <rect key="frame" x="20" y="271" width="350" height="33"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fdo-NL-Gj0">
-                                                    <rect key="frame" x="20" y="329" width="220" height="57"/>
+                                                    <rect key="frame" x="20" y="329" width="215" height="57"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -254,12 +254,12 @@
                                                     <rect key="frame" x="20" y="394" width="350" height="397"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     <color key="textColor" systemColor="labelColor"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 </textView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="開放時間 : " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lm6-c3-Xmn">
                                                     <rect key="frame" x="20" y="310" width="74" height="18"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -282,7 +282,7 @@
                                                 <constraint firstItem="Fdo-NL-Gj0" firstAttribute="leading" secondItem="aTq-Ql-4Bn" secondAttribute="leadingMargin" id="XqF-nO-tFP"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="4uP-1J-KAn" secondAttribute="bottom" constant="561" id="Yeg-2x-X3O"/>
                                                 <constraint firstItem="O3x-go-9lb" firstAttribute="top" secondItem="faA-jh-ABG" secondAttribute="bottom" constant="5" id="ZkZ-rY-TtW"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="Fdo-NL-Gj0" secondAttribute="trailing" constant="130" id="cGp-4D-EUW"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="Fdo-NL-Gj0" secondAttribute="trailing" constant="135" id="cGp-4D-EUW"/>
                                                 <constraint firstItem="Fdo-NL-Gj0" firstAttribute="top" secondItem="saZ-Cg-Il1" secondAttribute="bottom" constant="25" id="clg-03-dHz"/>
                                                 <constraint firstItem="saZ-Cg-Il1" firstAttribute="trailing" secondItem="aTq-Ql-4Bn" secondAttribute="trailingMargin" id="erO-Sz-yzQ"/>
                                                 <constraint firstItem="2dQ-hn-LgE" firstAttribute="leading" secondItem="aTq-Ql-4Bn" secondAttribute="leadingMargin" id="fI5-sk-PJN"/>
