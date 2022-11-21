@@ -21,7 +21,7 @@
                             <rect key="frame" x="0.0" y="0.0" width="390" height="40"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="Tpe-8W-969">
+                                <searchBar contentMode="redraw" searchBarStyle="minimal" translatesAutoresizingMaskIntoConstraints="NO" id="Tpe-8W-969">
                                     <rect key="frame" x="0.0" y="0.0" width="170" height="40"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="170" id="SKm-oc-eUg"/>
@@ -474,6 +474,7 @@
                         <outlet property="lateLabel" destination="Rtj-RK-UOc" id="zgg-wJ-wag"/>
                         <outlet property="longLabel" destination="daP-by-L1e" id="gWZ-ve-fWN"/>
                         <outlet property="myActivityIndicator" destination="0hS-zy-Fxj" id="b9p-AP-ril"/>
+                        <outlet property="testButton" destination="lKI-Ox-Huz" id="y4Q-wD-ySp"/>
                         <outlet property="updateMsgLabel" destination="SxZ-U0-WjT" id="zXg-7G-0wC"/>
                     </connections>
                 </tableViewController>

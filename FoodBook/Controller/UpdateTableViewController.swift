@@ -15,7 +15,6 @@ class UpdateTableViewController: UITableViewController {
     private var db:OpaquePointer?
     
     var restNews = [Info]()
-    
     var id = ""
     var name = ""
     var description_str = ""
@@ -44,10 +43,8 @@ class UpdateTableViewController: UITableViewController {
     @IBOutlet weak var longLabel: UILabel!
     @IBOutlet weak var backView01: UIView!
     @IBOutlet weak var backView00: UIView!
-    
     @IBOutlet weak var myActivityIndicator: UIActivityIndicatorView!
-    
-    let loadingIndicator = UIActivityIndicatorView()
+    @IBOutlet weak var testButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,8 +74,8 @@ class UpdateTableViewController: UITableViewController {
         backView00.layer.cornerRadius = 8
         backView01.layer.cornerRadius = 8
         
-        self.myActivityIndicator.isHidden = true
-        
+        myActivityIndicator.isHidden = true
+        testButton.isHidden = true
     }
 
     // MARK: - Table view data source
@@ -97,6 +94,7 @@ class UpdateTableViewController: UITableViewController {
     }
     
     //設定指示器樣式並加入主view
+    let loadingIndicator = UIActivityIndicatorView()
     func addLoadingView() {
         
         //設定與主view的尺寸&位置相同(置中填滿)
@@ -253,8 +251,6 @@ class UpdateTableViewController: UITableViewController {
             index += 1
         }
         
-//        let messageStr = "總共\(index)筆餐廳資料"
-        
         showAlert("資料更新成功", "總共\(index)筆餐廳資料")
         
 //        self.loadingIndicator.stopAnimating()
@@ -375,16 +371,9 @@ class UpdateTableViewController: UITableViewController {
             //執行資料庫異動，如果執行不成功
             if sqlite3_step(statement!) != SQLITE_DONE
             {
-                printError(with: "Could not insert a row")
+//                printError(with: "Could not insert a row")
+                showAlert("資料處理", "資料新增失敗")
                 
-                //產生提示視窗
-                let alert = UIAlertController(title: "資料處理", message: "資料新增失敗", preferredStyle: .alert)
-                //產生提示視窗內用的按鈕
-                let okAction = UIAlertAction(title: "確定", style: .destructive)
-                //將按鈕加入提示視窗
-                alert.addAction(okAction)
-                //顯示提示視窗
-                self.present(alert, animated: true)
                 //關閉連線資料集
                 if statement != nil
                 {

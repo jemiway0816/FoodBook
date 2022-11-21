@@ -16,20 +16,16 @@ class ListTableViewController: UITableViewController, CLLocationManagerDelegate 
     
     var mLocationManager :CLLocationManager!
     var currentLocation:CLLocation!
-    
-    @IBOutlet weak var aroundButtonOutlet: UIButton!
     var searchStr = ""
     var restRow = Restaurant(id: "C3_315080500H_000013", name: "望海巴耐餐廳/咖啡", description: "非常有特色的原住民餐點餐廳，位於台十一線8K區段上，是東海岸行經花蓮大橋進入東海岸國家風景區之後，花蓮遊客中心前，第一家餐飲服務業者；業者於建物外部以當地竹子搭蓋起大門及挑高竹亭，呈顯其自然風格建築形式是其特色。望海巴耐野菜餐廳位於台十一線8K區段上，是東海岸行經花蓮大橋進入東海岸國家風景區之後，花蓮遊客中心前，第一家餐飲服務業者；業者於建物外部以當地竹子搭蓋起大門及挑高竹亭，呈顯其自然風格建築形式是其特色。", add: "花蓮縣974壽豐鄉鹽寮村大橋22號", zipcode: "974", region: "花蓮縣", town: "壽豐鄉", tel: "886-9-37533483", openTime: "11:30 - 20:00", website: "", picture1: "https://www.eastcoast-nsa.gov.tw/image/41530/640x480", picDescribe1: "花蓮無敵海景咖啡餐廳-望海巴耐", picture2: "", picDescribe2: "", picture3: "", picDescribe3: "", px: 121.606110, py: 23.918950, classLevel: "9", map: "", parkingInfo: "",date: "2022-09-06")
-    
     var sqlHeaderStr = "select name,description,address,region,town,picture1,picdescribe1,px,py,update_date,tel,opentime,website from restaurant"
-    
     var favRests = [Restaurant]()
     var restaurants = [Restaurant]()
     var searchResult = [Restaurant]()
     
+    @IBOutlet weak var aroundButtonOutlet: UIButton!
     @IBOutlet weak var regionTextField: UITextField!
     @IBOutlet weak var positionLabel: UILabel!
-    
     @IBOutlet var searchBarOutlet: UISearchBar!
     
     override func viewDidLoad() {
@@ -37,13 +33,6 @@ class ListTableViewController: UITableViewController, CLLocationManagerDelegate 
         
         //取得App的db連線
         db = (UIApplication.shared.delegate as? AppDelegate)?.getDB()
-        
-//        //準備離線資料集
-//        DispatchQueue.main.async {
-//            self.getAround()
-//        }
-//        self.setMapRestData(restData: self.searchResult)
-//        self.tableView.reloadData()
         
         // 讀取附近的餐廳
         getAround()
@@ -125,7 +114,6 @@ class ListTableViewController: UITableViewController, CLLocationManagerDelegate 
         mapViewController?.updateLocate = position
         mapViewController?.currentLocation = position
     }
-    
     
     // 把搜尋餐廳的結果傳到地圖頁
     func setMapRestData(restData:[Restaurant]) {
@@ -259,8 +247,6 @@ class ListTableViewController: UITableViewController, CLLocationManagerDelegate 
         
 //        var restTests = [Restaurant]()
 //
-
-//
 //        let sqlStr = sqlHeaderStr + " where update_date == '2022-11-14' "
 //
 //        restTests = getDataFromTable(sql: sqlStr)
@@ -271,7 +257,6 @@ class ListTableViewController: UITableViewController, CLLocationManagerDelegate 
 //            print("\(index) name = \(restTest.name) ， date = \(restTest.date)")
 //            index += 1
 //        }
-        
         
         var regionList:[String] = []
         var townList:[String] = []

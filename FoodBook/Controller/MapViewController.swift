@@ -19,9 +19,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     var restData:[Restaurant]!
     var rest:Restaurant!
     
-    var myLocate = [
-        CLLocation(latitude: 25.034012, longitude: 121.56446)
-    ]
+    var myLocate = [ CLLocation(latitude: 25.034012, longitude: 121.56446) ]
     
     @IBOutlet var mainView: UIView!
     override func viewDidLoad() {

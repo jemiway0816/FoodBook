@@ -36,15 +36,13 @@ class DetailTableViewController: UITableViewController {
         detailTelLabel.text = rest.tel
         detailOpenTimeTextField.text = rest.openTime
         
-        print("rest.website = \(rest.website)")
+//        print("rest.website = \(rest.website)")
         
         if rest.website == "" {
             detailWebSite.isEnabled = false
         } else {
             detailWebSite.isEnabled = true
         }
-        
-//        detailImageView.kf.setImage(with: URL(string: rest.picture1))
         
         if let url = URL(string: rest.picture1) {
             detailImageView.kf.setImage(with: url)
@@ -135,8 +133,6 @@ class DetailTableViewController: UITableViewController {
                 self.present(alert, animated: true)
             }
         }
-        
-        
     }
     
     @IBAction func showWebsiteBySF(_ sender: Any) {
@@ -156,7 +152,7 @@ class DetailTableViewController: UITableViewController {
         
         listViewController?.favRests.insert(rest, at: 0)
         
-        print("favRest ===> \(listViewController!.favRests)")
+//        print("favRest ===> \(listViewController!.favRests)")
         
         Restaurant.saveToFile(favRest: listViewController!.favRests)
         
@@ -170,7 +166,4 @@ class DetailTableViewController: UITableViewController {
         self.present(alert, animated: true)
         
     }
-    
-    
-    
 }
