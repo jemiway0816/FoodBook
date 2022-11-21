@@ -77,6 +77,8 @@ class UpdateTableViewController: UITableViewController {
         backView00.layer.cornerRadius = 8
         backView01.layer.cornerRadius = 8
         
+        self.myActivityIndicator.isHidden = true
+        
     }
 
     // MARK: - Table view data source
@@ -91,46 +93,8 @@ class UpdateTableViewController: UITableViewController {
     @IBAction func showTestButton(_ sender: Any) {
         
         showTest()
-        
+                
     }
-    
-    /*
-    //產生載入中圖示的指示器
-    let loadingIndicator = UIActivityIndicatorView()
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        addLoadingView()
-    }
-    //設定指示器樣式並加入主view
-    func addLoadingView(){
-        //設定與主view的尺寸&位置相同(置中填滿)
-        loadingIndicator.frame = CGRect(x: 0, y: 0, width:
-        view.bounds.width, height: view.bounds.height)
-        //設定動畫
-        loadingIndicator.startAnimating()
-        //設定樣式:Medium、Large、Large White、White、Gray
-        loadingIndicator.style = .large
-        //設定顏色
-        loadingIndicator.color = .systemPink
-        //設定背景顏色(也可直接設定view的背景顏色)
-        loadingIndicator.backgroundColor = .white
-        loadingIndicator.hidesWhenStopped = true
-        //在主view加入指示器
-        view.addSubview(loadingIndicator)
-    }
-    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-            
-        DispatchQueue.main.async {
-            if self.images.count == 50{
-                cell.imageView.image = self.images[indexPath.item]
-                //取得所有照片後，移除指示器
-                self.loadingIndicator.stopAnimating()
-                self.loadingIndicator.removeFromSuperview()
-            }
-        }
-        return cell
-    }
-    */
     
     //設定指示器樣式並加入主view
     func addLoadingView() {
@@ -169,30 +133,36 @@ class UpdateTableViewController: UITableViewController {
                     
                     DispatchQueue.main.async {
                         
-                        let controller = UIAlertController(title: "更新資料已下載完成",
-                                message: "是否開始更新 ?", preferredStyle: .alert)
+                        let controller = UIAlertController(title: "更新資料已下載完成", message: "是否開始更新 ?", preferredStyle: .alert)
                         let okAction = UIAlertAction(title: "好的", style: .default)
                         {
                             _
                             in
-                            print("開始更新")
-
                             // 更新餐廳資料到資料庫
                             self.preperUpdateDB()
                         }
                         controller.addAction(okAction)
-                        let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil)
+                        let cancelAction = UIAlertAction(title: "取消", style: .cancel)
+                        {
+                            _
+                            in
+//                            self.loadingIndicator.stopAnimating()
+//                            self.loadingIndicator.removeFromSuperview()
+                            self.myActivityIndicator.stopAnimating()
+                        }
                         controller.addAction(cancelAction)
                         self.present(controller, animated: true, completion: nil)
+                        
+//                        self.addLoadingView()
+                        self.myActivityIndicator.startAnimating()
+                        
                     }
                     
                 } catch  {
                     print(error)
                 }
             }
-
         }.resume()
-
     }
     
     func showTest() {
@@ -223,8 +193,6 @@ class UpdateTableViewController: UITableViewController {
     }
     
     func preperUpdateDB() {
-        
-//        addLoadingView()
         
         // 刪除所有資料
         deleteData()
@@ -270,9 +238,6 @@ class UpdateTableViewController: UITableViewController {
             index += 1
         }
         
-//        loadingIndicator.stopAnimating()
-//        loadingIndicator.removeFromSuperview()
-        
         //產生提示視窗
         let alert = UIAlertController(title: "資料更新成功", message: "總共\(index)筆餐廳資料", preferredStyle: .alert)
         //產生提示視窗內用的按鈕
@@ -281,6 +246,11 @@ class UpdateTableViewController: UITableViewController {
         alert.addAction(okAction)
         //顯示提示視窗
         self.present(alert, animated: true)
+        
+//        self.loadingIndicator.stopAnimating()
+//        self.loadingIndicator.removeFromSuperview()
+        self.myActivityIndicator.stopAnimating()
+        
     }
     
     func updateDB(sqlStr:String) {
