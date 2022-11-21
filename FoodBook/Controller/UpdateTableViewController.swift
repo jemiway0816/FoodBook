@@ -160,7 +160,10 @@ class UpdateTableViewController: UITableViewController {
                     
                 } catch  {
                     print(error)
+                    self.showAlert("更新失敗", "更新資料格式錯誤")
                 }
+            } else {
+                self.showAlert("更新失敗", "無法連接伺服器")
             }
         }.resume()
     }
@@ -174,6 +177,18 @@ class UpdateTableViewController: UITableViewController {
         listViewController?.getSQLTest()
     }
     
+    func showAlert(_ titleStr:String , _ messageStr:String) {
+        
+        //產生提示視窗
+        let alert = UIAlertController(title: titleStr, message: messageStr, preferredStyle: .alert)
+        //產生提示視窗內用的按鈕
+        let okAction = UIAlertAction(title: "確定", style: .default)
+        //將按鈕加入提示視窗
+        alert.addAction(okAction)
+        //顯示提示視窗
+        self.present(alert, animated: true)
+        
+    }
     
     func deleteData() {
         
@@ -238,14 +253,9 @@ class UpdateTableViewController: UITableViewController {
             index += 1
         }
         
-        //產生提示視窗
-        let alert = UIAlertController(title: "資料更新成功", message: "總共\(index)筆餐廳資料", preferredStyle: .alert)
-        //產生提示視窗內用的按鈕
-        let okAction = UIAlertAction(title: "確定", style: .destructive)
-        //將按鈕加入提示視窗
-        alert.addAction(okAction)
-        //顯示提示視窗
-        self.present(alert, animated: true)
+//        let messageStr = "總共\(index)筆餐廳資料"
+        
+        showAlert("資料更新成功", "總共\(index)筆餐廳資料")
         
 //        self.loadingIndicator.stopAnimating()
 //        self.loadingIndicator.removeFromSuperview()
