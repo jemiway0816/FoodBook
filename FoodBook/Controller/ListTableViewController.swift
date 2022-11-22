@@ -86,9 +86,12 @@ class ListTableViewController: UITableViewController, CLLocationManagerDelegate 
         // 設定搜尋 SQL string
         getSearchRest(searchStr: searchStr)
         
-        // 按下地區搜尋return就一定跳到搜尋區域
-        let searchRestFirst:CLLocation = CLLocation(latitude: searchResult[0].py, longitude: searchResult[0].px)
-        setMapShowArea(position: searchRestFirst)
+        if searchResult.count != 0 {
+            
+            // 按下地區搜尋return就一定跳到搜尋區域
+            let searchRestFirst:CLLocation = CLLocation(latitude: searchResult[0].py, longitude: searchResult[0].px)
+            setMapShowArea(position: searchRestFirst)
+        }
     }
     
     // 按下附近餐廳按鈕
@@ -122,7 +125,7 @@ class ListTableViewController: UITableViewController, CLLocationManagerDelegate 
         let navController = tabBarController?.viewControllers?[1] as? UINavigationController
         let mapViewController = navController?.viewControllers.first as? MapViewController
         
-        print("restaurants count = \(restData.count)")
+//        print("restaurants count = \(restData.count)")
         
         // 把搜尋餐廳的結果傳到地圖頁
         mapViewController?.restData = restData
@@ -143,9 +146,9 @@ class ListTableViewController: UITableViewController, CLLocationManagerDelegate 
         
         if let hereForNow = mLocationManager?.location?.coordinate {
             
-            print("now locate = \(hereForNow)")
-            let lati = String(format: "%.5f", hereForNow.latitude)
-            let long = String(format: "%.5f", hereForNow.longitude)
+//            print("now locate = \(hereForNow)")
+//            let lati = String(format: "%.5f", hereForNow.latitude)
+//            let long = String(format: "%.5f", hereForNow.longitude)
 
             // 讀取座標點附近的餐廳，最少20家
             getAroundRest(position: hereForNow)
@@ -153,7 +156,7 @@ class ListTableViewController: UITableViewController, CLLocationManagerDelegate 
         } else {
             
             // 無法定位
-            print("can't get locate")
+//            print("can't get locate")
             
             // 使用預設值
             let hereForNow:CLLocation = CLLocation(latitude: 24.98, longitude: 121.45)
@@ -196,9 +199,12 @@ class ListTableViewController: UITableViewController, CLLocationManagerDelegate 
         // 取得string關鍵字的搜尋結果
         getSearchRest(searchStr: name)
         
-        // 按下 search bar return就一定跳到搜尋區域
-        let searchRestFirst:CLLocation = CLLocation(latitude: searchResult[0].py, longitude: searchResult[0].px)
-        setMapShowArea(position: searchRestFirst)
+        if searchResult.count != 0 {
+            
+            // 按下 search bar return就一定跳到搜尋區域
+            let searchRestFirst:CLLocation = CLLocation(latitude: searchResult[0].py, longitude: searchResult[0].px)
+            setMapShowArea(position: searchRestFirst)
+        }
     }
     
     // 設定搜尋 SQL string
