@@ -55,6 +55,7 @@ class DetailTableViewController: UITableViewController {
 
     }
 
+    // 開始導航
     @IBAction func startNavButton(_ sender: Any) {
         
         //初始化地理資訊編碼器
@@ -129,6 +130,7 @@ class DetailTableViewController: UITableViewController {
         }
     }
     
+    // 跳轉網站連結
     @IBAction func showWebsiteBySF(_ sender: Any) {
         
         if let url = URL(string: rest.website) {
@@ -138,6 +140,7 @@ class DetailTableViewController: UITableViewController {
         }
     }
     
+    // 加入我的最愛
     @IBAction func favRestAddButton(_ sender: Any) {
   
         // 取得餐廳列表頁的 controller
@@ -150,14 +153,7 @@ class DetailTableViewController: UITableViewController {
         
         Restaurant.saveToFile(favRest: listViewController!.favRests)
         
-        //產生提示視窗
-        let alert = UIAlertController(title: "我的最愛加入成功", message: "已將\(rest.name)餐廳加入我的最愛", preferredStyle: .alert)
-        //產生提示視窗內用的按鈕
-        let okAction = UIAlertAction(title: "確定", style: .destructive)
-        //將按鈕加入提示視窗
-        alert.addAction(okAction)
-        //顯示提示視窗
-        self.present(alert, animated: true)
+        listViewController?.showAlert("我的最愛加入成功", "已將\(rest.name)餐廳加入我的最愛")
         
     }
 }

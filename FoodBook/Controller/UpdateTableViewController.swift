@@ -41,6 +41,8 @@ class UpdateTableViewController: UITableViewController {
     @IBOutlet weak var myActivityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var testButton: UIButton!
     
+    var listViewController:ListTableViewController!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -49,7 +51,7 @@ class UpdateTableViewController: UITableViewController {
         
         // 取得餐廳列表頁的 controller
         let navController = tabBarController?.viewControllers?[0] as? UINavigationController
-        let listViewController = navController?.viewControllers.first as? ListTableViewController
+        listViewController = navController?.viewControllers.first as? ListTableViewController
         
         updateMsgLabel.text = listViewController?.getLastUpdateDate()
 
@@ -153,34 +155,17 @@ class UpdateTableViewController: UITableViewController {
                     
                 } catch  {
                     print(error)
-                    self.showAlert("更新失敗", "更新資料格式錯誤")
+                    self.listViewController.showAlert("更新失敗", "更新資料格式錯誤")
                 }
             } else {
-                self.showAlert("更新失敗", "無法連接伺服器")
+                self.listViewController.showAlert("更新失敗", "無法連接伺服器")
             }
         }.resume()
     }
     
     func showTest() {
         
-        // 取得餐廳列表頁的 controller
-        let navController = tabBarController?.viewControllers?[0] as? UINavigationController
-        let listViewController = navController?.viewControllers.first as? ListTableViewController
-        
         listViewController?.getSQLTest()
-    }
-    
-    func showAlert(_ titleStr:String , _ messageStr:String) {
-        
-        //產生提示視窗
-        let alert = UIAlertController(title: titleStr, message: messageStr, preferredStyle: .alert)
-        //產生提示視窗內用的按鈕
-        let okAction = UIAlertAction(title: "確定", style: .default)
-        //將按鈕加入提示視窗
-        alert.addAction(okAction)
-        //顯示提示視窗
-        self.present(alert, animated: true)
-        
     }
     
     func deleteData() {
@@ -246,7 +231,7 @@ class UpdateTableViewController: UITableViewController {
             index += 1
         }
         
-        showAlert("資料更新成功", "總共\(index)筆餐廳資料")
+        listViewController.showAlert("資料更新成功", "總共\(index)筆餐廳資料")
         
 //        self.loadingIndicator.stopAnimating()
 //        self.loadingIndicator.removeFromSuperview()
@@ -367,7 +352,7 @@ class UpdateTableViewController: UITableViewController {
             if sqlite3_step(statement!) != SQLITE_DONE
             {
 //                printError(with: "Could not insert a row")
-                showAlert("資料處理", "資料新增失敗")
+                listViewController.showAlert("資料處理", "資料新增失敗")
                 
                 //關閉連線資料集
                 if statement != nil

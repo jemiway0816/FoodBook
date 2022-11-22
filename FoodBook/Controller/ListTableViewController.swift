@@ -35,15 +35,13 @@ class ListTableViewController: UITableViewController, CLLocationManagerDelegate 
         regionTextField.text = searchResult[0].town
         aroundButtonOutlet.layer.cornerRadius = 5
         
-//        let docDir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-//        let url = docDir.appendingPathComponent("favRests").appendingPathExtension("plist")
-
+        // 讀取我的最愛餐廳存檔
         if let readFavRests = Restaurant.readFavFromFile() {
             self.favRests = readFavRests
             
-            for fav in favRests {
-                print("======>> \(fav.name)")
-            }
+//            for fav in favRests {
+//                print("======>> \(fav.name)")
+//            }
         }
         
         //初始化下拉更新元件
@@ -82,7 +80,7 @@ class ListTableViewController: UITableViewController, CLLocationManagerDelegate 
         
         if searchResult.count != 0 {
             
-            // 按下地區搜尋return就一定跳到搜尋區域
+            // 按下地區搜尋return就跳到搜尋區域
             let searchRestFirst:CLLocation = CLLocation(latitude: searchResult[0].py, longitude: searchResult[0].px)
             setMapShowArea(position: searchRestFirst)
         }
@@ -94,11 +92,23 @@ class ListTableViewController: UITableViewController, CLLocationManagerDelegate 
         // 讀取附近的餐廳
         getAround()
         
-        // 按下附近餐廳按鈕就一定跳到目前位置
+        // 按下附近餐廳按鈕就跳到目前位置
         setMapShowArea(position: currentLocation)
     }
     
     //MARK: - 自定函式
+    
+    func showAlert(_ titleStr:String , _ messageStr:String) {
+        
+        //產生提示視窗
+        let alert = UIAlertController(title: titleStr, message: messageStr, preferredStyle: .alert)
+        //產生提示視窗內用的按鈕
+        let okAction = UIAlertAction(title: "確定", style: .default)
+        //將按鈕加入提示視窗
+        alert.addAction(okAction)
+        //顯示提示視窗
+        self.present(alert, animated: true)
+    }
     
     // 顯示指定座標的附近區域
     func setMapShowArea(position:CLLocation) {
@@ -195,7 +205,7 @@ class ListTableViewController: UITableViewController, CLLocationManagerDelegate 
         
         if searchResult.count != 0 {
             
-            // 按下 search bar return就一定跳到搜尋區域
+            // 按下 search bar return就跳到搜尋區域
             let searchRestFirst:CLLocation = CLLocation(latitude: searchResult[0].py, longitude: searchResult[0].px)
             setMapShowArea(position: searchRestFirst)
         }
