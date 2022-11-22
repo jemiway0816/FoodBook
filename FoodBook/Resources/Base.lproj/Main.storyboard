@@ -254,6 +254,9 @@
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GZx-89-ocz">
                                                     <rect key="frame" x="260" y="241" width="110" height="35"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="110" id="DmM-VM-tL4"/>
+                                                    </constraints>
                                                     <state key="normal" title="Button"/>
                                                     <buttonConfiguration key="configuration" style="filled" title="開始導航">
                                                         <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -284,7 +287,10 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O3x-go-9lb">
-                                                    <rect key="frame" x="149" y="241" width="93.333333333333314" height="35"/>
+                                                    <rect key="frame" x="139.33333333333334" y="241" width="110" height="35"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="110" id="E7L-vx-Vz0"/>
+                                                    </constraints>
                                                     <state key="normal" title="Button"/>
                                                     <buttonConfiguration key="configuration" style="filled" title="加入最愛">
                                                         <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -302,6 +308,7 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="GZx-89-ocz" firstAttribute="leading" secondItem="O3x-go-9lb" secondAttribute="trailing" constant="10.67" id="0Rd-xy-b1m"/>
                                                 <constraint firstItem="GZx-89-ocz" firstAttribute="centerY" secondItem="O3x-go-9lb" secondAttribute="centerY" id="1HA-dd-ggH"/>
                                                 <constraint firstItem="gAj-KK-3dU" firstAttribute="top" secondItem="ItC-ze-w8p" secondAttribute="bottom" constant="12" id="2ov-b0-LGx"/>
                                                 <constraint firstItem="gAj-KK-3dU" firstAttribute="leading" secondItem="QS6-k7-LPJ" secondAttribute="leading" id="5tV-5Q-KJd"/>
@@ -311,10 +318,7 @@
                                                 <constraint firstAttribute="bottomMargin" secondItem="vV0-1B-DTk" secondAttribute="bottom" constant="257" id="82p-Eo-KMF"/>
                                                 <constraint firstItem="QS6-k7-LPJ" firstAttribute="top" secondItem="faA-jh-ABG" secondAttribute="bottom" constant="7.3300000000000001" id="8P9-Hy-yl6"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="faA-jh-ABG" secondAttribute="bottom" constant="521" id="8tO-os-g3y"/>
-                                                <constraint firstItem="O3x-go-9lb" firstAttribute="leading" secondItem="faA-jh-ABG" secondAttribute="trailing" constant="19" id="AXI-bq-15r"/>
-                                                <constraint firstItem="GZx-89-ocz" firstAttribute="leading" secondItem="O3x-go-9lb" secondAttribute="trailing" constant="17.670000000000002" id="BeL-la-mek"/>
                                                 <constraint firstAttribute="trailing" secondItem="gAj-KK-3dU" secondAttribute="trailing" constant="324.32999999999998" id="Ckb-cA-TE2"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="O3x-go-9lb" secondAttribute="trailing" constant="127.67" id="E30-25-2se"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="vV0-1B-DTk" secondAttribute="trailing" constant="271.67000000000002" id="G5M-k2-Ati"/>
                                                 <constraint firstItem="GZx-89-ocz" firstAttribute="trailing" secondItem="aTq-Ql-4Bn" secondAttribute="trailingMargin" id="GbU-a8-vN3"/>
                                                 <constraint firstItem="saZ-Cg-Il1" firstAttribute="trailing" secondItem="aTq-Ql-4Bn" secondAttribute="trailingMargin" id="GcB-S1-YoQ"/>
@@ -333,6 +337,7 @@
                                                 <constraint firstItem="O3x-go-9lb" firstAttribute="centerY" secondItem="faA-jh-ABG" secondAttribute="centerY" id="dIa-VJ-7v9"/>
                                                 <constraint firstItem="YBk-MI-hoW" firstAttribute="leading" secondItem="lm6-c3-Xmn" secondAttribute="leading" id="dgE-qI-F3y"/>
                                                 <constraint firstItem="QS6-k7-LPJ" firstAttribute="leading" secondItem="aTq-Ql-4Bn" secondAttribute="leadingMargin" id="gsP-Gn-faY"/>
+                                                <constraint firstItem="O3x-go-9lb" firstAttribute="leading" secondItem="faA-jh-ABG" secondAttribute="trailing" constant="9.3300000000000001" id="hKM-96-hbi"/>
                                                 <constraint firstAttribute="bottom" secondItem="gAj-KK-3dU" secondAttribute="bottom" constant="417" id="hSt-QZ-gO3"/>
                                                 <constraint firstItem="ItC-ze-w8p" firstAttribute="trailing" secondItem="aTq-Ql-4Bn" secondAttribute="trailingMargin" id="i1Y-Xw-M0u"/>
                                                 <constraint firstItem="vV0-1B-DTk" firstAttribute="leading" secondItem="gAj-KK-3dU" secondAttribute="leading" id="jFt-3V-Evl"/>

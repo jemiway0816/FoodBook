@@ -1,9 +1,4 @@
-//
-//  RestFromJSON.swift
-//  FoodBook
-//
-//  Created by CHUN-CHIEH LU on 2022/10/25.
-//
+
 // https://data.gov.tw/dataset/7779
 // https://gis.taiwan.net.tw/XMLReleaseALL_public/restaurant_C_f.json
 

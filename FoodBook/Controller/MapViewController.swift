@@ -1,9 +1,3 @@
-//
-//  MapViewController.swift
-//  FoodBook
-//
-//  Created by Jemiway on 2022/10/25.
-//
 
 import UIKit
 import MapKit

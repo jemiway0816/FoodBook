@@ -1,9 +1,3 @@
-//
-//  ListTableViewController.swift
-//  FoodBook
-//
-//  Created by CHUN-CHIEH LU on 2022/10/23.
-//
 
 import UIKit
 import Kingfisher
@@ -41,9 +35,9 @@ class ListTableViewController: UITableViewController, CLLocationManagerDelegate 
         regionTextField.text = searchResult[0].town
         aroundButtonOutlet.layer.cornerRadius = 5
         
-        let docDir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-        let url = docDir.appendingPathComponent("favRests").appendingPathExtension("plist")
-        
+//        let docDir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+//        let url = docDir.appendingPathComponent("favRests").appendingPathExtension("plist")
+
         if let readFavRests = Restaurant.readFavFromFile() {
             self.favRests = readFavRests
             

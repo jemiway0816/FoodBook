@@ -1,9 +1,3 @@
-//
-//  DetailTableViewController.swift
-//  FoodBook
-//
-//  Created by CHUN-CHIEH LU on 2022/10/23.
-//
 
 import UIKit
 import Kingfisher
