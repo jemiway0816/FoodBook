@@ -69,7 +69,7 @@ class FavTableViewController: UITableViewController {
         cell.cellFavRegionLabel.text = "\(favRest.region) \(favRest.town)"
         
         cell.cellFavWebsiteLabel.clipsToBounds = true
-        cell.cellFavWebsiteLabel.backgroundColor = .orange
+        cell.cellFavWebsiteLabel.backgroundColor = UIColor(red: 1, green: 149/255, blue: 0, alpha: 78/100)
         cell.cellFavWebsiteLabel.layer.cornerRadius = 5
         
         if favRest.website == "" {

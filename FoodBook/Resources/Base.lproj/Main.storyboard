@@ -21,21 +21,10 @@
                             <rect key="frame" x="0.0" y="0.0" width="390" height="40"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <searchBar contentMode="redraw" searchBarStyle="minimal" translatesAutoresizingMaskIntoConstraints="NO" id="Tpe-8W-969">
-                                    <rect key="frame" x="0.0" y="0.0" width="170" height="40"/>
+                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="板橋" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MOs-Pe-42N">
+                                    <rect key="frame" x="194" y="3" width="90" height="34"/>
                                     <constraints>
-                                        <constraint firstAttribute="width" constant="170" id="SKm-oc-eUg"/>
-                                        <constraint firstAttribute="height" constant="40" id="gz0-wi-QE8"/>
-                                    </constraints>
-                                    <textInputTraits key="textInputTraits"/>
-                                    <connections>
-                                        <outlet property="delegate" destination="K8S-O5-ePv" id="gSi-Jp-oYe"/>
-                                    </connections>
-                                </searchBar>
-                                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="板橋" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MOs-Pe-42N">
-                                    <rect key="frame" x="180" y="0.0" width="90" height="40"/>
-                                    <constraints>
-                                        <constraint firstAttribute="width" constant="90" id="Ith-pH-xMJ"/>
+                                        <constraint firstAttribute="width" constant="90" id="ghc-ZX-I1P"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                     <textInputTraits key="textInputTraits"/>
@@ -44,9 +33,12 @@
                                         <action selector="regionTextFieldEditBegin:" destination="K8S-O5-ePv" eventType="editingDidBegin" id="gEq-Rt-POB"/>
                                     </connections>
                                 </textField>
-                                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3tc-5J-cy2">
-                                    <rect key="frame" x="286" y="0.0" width="89" height="40"/>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3tc-5J-cy2">
+                                    <rect key="frame" x="292" y="3.6666666666666679" width="90" height="33"/>
                                     <color key="backgroundColor" red="0.46202266219999999" green="0.83828371759999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="90" id="yJN-cy-Aj3"/>
+                                    </constraints>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
@@ -58,18 +50,23 @@
                                         <action selector="aroundButtom:" destination="K8S-O5-ePv" eventType="touchUpInside" id="KVM-iB-i0K"/>
                                     </connections>
                                 </button>
+                                <searchBar contentMode="redraw" horizontalHuggingPriority="249" horizontalCompressionResistancePriority="749" searchBarStyle="minimal" translatesAutoresizingMaskIntoConstraints="NO" id="Tpe-8W-969">
+                                    <rect key="frame" x="0.0" y="-8" width="194" height="56"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                    <connections>
+                                        <outlet property="delegate" destination="K8S-O5-ePv" id="gSi-Jp-oYe"/>
+                                    </connections>
+                                </searchBar>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstItem="3tc-5J-cy2" firstAttribute="height" secondItem="MOs-Pe-42N" secondAttribute="height" id="G0f-dS-M7R"/>
-                                <constraint firstItem="MOs-Pe-42N" firstAttribute="leading" secondItem="Tpe-8W-969" secondAttribute="trailing" constant="10" id="I9z-tO-caX"/>
-                                <constraint firstItem="3tc-5J-cy2" firstAttribute="centerY" secondItem="MOs-Pe-42N" secondAttribute="centerY" id="OXN-ce-zHI"/>
-                                <constraint firstItem="MOs-Pe-42N" firstAttribute="centerY" secondItem="Tpe-8W-969" secondAttribute="centerY" id="dG2-Wz-1Cw"/>
-                                <constraint firstItem="Tpe-8W-969" firstAttribute="leading" secondItem="w7Q-Uo-RP3" secondAttribute="leading" id="db4-KN-u8r"/>
-                                <constraint firstItem="Tpe-8W-969" firstAttribute="top" secondItem="w7Q-Uo-RP3" secondAttribute="top" id="fF6-d6-Pt3"/>
-                                <constraint firstAttribute="trailing" secondItem="3tc-5J-cy2" secondAttribute="trailing" constant="15" id="g6W-mI-Kli"/>
-                                <constraint firstItem="3tc-5J-cy2" firstAttribute="leading" secondItem="MOs-Pe-42N" secondAttribute="trailing" constant="16" id="hkS-Rg-Y4f"/>
-                                <constraint firstItem="MOs-Pe-42N" firstAttribute="height" secondItem="Tpe-8W-969" secondAttribute="height" id="pgd-le-oi8"/>
+                                <constraint firstItem="Tpe-8W-969" firstAttribute="leading" secondItem="w7Q-Uo-RP3" secondAttribute="leading" id="9n3-BU-Jt3" userLabel="Search Bar Outlet.leading = leading"/>
+                                <constraint firstAttribute="trailing" secondItem="3tc-5J-cy2" secondAttribute="trailing" constant="8" id="O7q-9v-Pli"/>
+                                <constraint firstItem="MOs-Pe-42N" firstAttribute="leading" secondItem="Tpe-8W-969" secondAttribute="trailing" id="T1i-IM-CYw"/>
+                                <constraint firstItem="MOs-Pe-42N" firstAttribute="centerY" secondItem="Tpe-8W-969" secondAttribute="centerY" id="eEj-wu-UAa"/>
+                                <constraint firstItem="3tc-5J-cy2" firstAttribute="centerY" secondItem="Tpe-8W-969" secondAttribute="centerY" id="hvo-pb-7bY"/>
+                                <constraint firstItem="Tpe-8W-969" firstAttribute="top" secondItem="w7Q-Uo-RP3" secondAttribute="top" constant="-8" id="mDT-64-epY"/>
+                                <constraint firstItem="3tc-5J-cy2" firstAttribute="leading" secondItem="MOs-Pe-42N" secondAttribute="trailing" constant="8" id="nYe-wF-z19"/>
                             </constraints>
                         </view>
                         <prototypes>
@@ -196,7 +193,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <label key="tableHeaderView" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="03Z-Kj-6HO">
+                        <label key="tableHeaderView" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" id="03Z-Kj-6HO">
                             <rect key="frame" x="0.0" y="0.0" width="390" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
