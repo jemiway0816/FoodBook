@@ -114,7 +114,9 @@ class UpdateTableViewController: UITableViewController {
     func update() {
         
         // 餐廳資料的json網路位置
-        let url = URL(string: "https://gis.taiwan.net.tw/XMLReleaseALL_public/restaurant_C_f.json")!
+        let url = URL(string: "https://media.taiwan.net.tw/XMLReleaseALL_public/restaurant_C_f.json")!
+        
+        
         
         URLSession.shared.dataTask(with: url) { data, response, error in
             if let data {
